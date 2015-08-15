@@ -13,11 +13,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 /*
-//Update version alpha 9981
-    -link menu in Profile
-    -fix Report
-    -scrollable in Report(30 days)
-    -new CustomList in Food
+//Update version alpha 9995
+    -update assistance tab
+    -new Achievement class
+    (1.drink water in one day(1 time),
+     2.reach carbohydrate 125g/day 5 times)
 */
 
 public class MainActivity extends Activity {
