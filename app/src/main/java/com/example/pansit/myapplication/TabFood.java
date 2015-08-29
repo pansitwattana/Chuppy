@@ -263,10 +263,13 @@ public class TabFood extends Fragment    {
                         DataKeeper data = ((NewHome) getActivity()).getData();
 
                         int amount = numberPicker.getValue();
-                        int cal = (food.getCalories() * amount);
+                        int cal = (food.getCalories());
 
-                        data.addCaloriesConsumed(cal);
-                        data.addDailyFood(food, hour);
+                        for(int i = 0; i < amount; i++) {
+                            data.addCaloriesConsumed(cal);
+                            data.addDailyFood(food, hour);
+
+                        }
                         data.foodRecentIndex = recentIndex;
                         data.foodFavoriteIndex = favIndex;
                         if (((NewHome) getActivity()).achievements.get(1).isActive() && data.checkCarbTodayIfMoreThan(125)) {
@@ -274,10 +277,11 @@ public class TabFood extends Fragment    {
                             if (((NewHome) getActivity()).achievements.get(1).isDone())
                                 showToast("\"CARBON PER DAY 5 TIMES \" Achieved");
                         }
+
                         ((NewHome) getActivity()).setData(data);
 
                         showToast("You eat " + food.getName() +
-                                " for " + cal + " cal.");
+                                " for " + cal + " cal. x" + amount);
 
 
                         //noti

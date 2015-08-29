@@ -3,6 +3,8 @@ package com.example.pansit.myapplication;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.ContextThemeWrapper;
@@ -13,6 +15,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by Pansit on 6/2/2015.
  */
@@ -20,7 +24,10 @@ import android.widget.TextView;
 
 public class TabDiet_sub1 extends Fragment {
 
+
     ImageButton sleepbutton,time_sleepButton,situpButton,detoxButton,apple_greenButton,exerciseButton,no_coffeeeButton,no_carboButton,no_algoholButton,brownriceButton;
+    ArrayList<ImageButton> imageButtons = new ArrayList<>();
+    ArrayList<Achievement> achievements;
     Dialog dialog;
     @Nullable
     @Override
@@ -29,8 +36,42 @@ public class TabDiet_sub1 extends Fragment {
         LayoutInflater localInflater = inflater.cloneInContext(context);
         View view = localInflater.inflate(R.layout.tab_diet_sub1, container, false);
 
-       //button 1
+        achievements = ((NewHome)getActivity()).achievements;
+
         sleepbutton = (ImageButton)view.findViewById(R.id.sleepbutton);
+        time_sleepButton = (ImageButton)view.findViewById(R.id.time_sleepButton);
+        situpButton = (ImageButton)view.findViewById(R.id.situpButton);
+        detoxButton = (ImageButton)view.findViewById(R.id.detoxButton);
+        apple_greenButton = (ImageButton)view.findViewById(R.id.apple_greenButton);
+        exerciseButton = (ImageButton)view.findViewById(R.id.exerciseButton);
+        no_coffeeeButton = (ImageButton)view.findViewById(R.id.no_coffeeeButton);
+        no_carboButton = (ImageButton)view.findViewById(R.id.no_carboButton);
+        no_algoholButton = (ImageButton)view.findViewById(R.id.no_algoholButton);
+        brownriceButton = (ImageButton)view.findViewById(R.id.brownriceButton);
+        //sleepbutton,time_sleepButton,situpButton,detoxButton,apple_greenButton,exerciseButton,
+        // no_coffeeeButton,no_carboButton,no_algoholButton,brownriceButton
+        imageButtons.add(sleepbutton);
+        imageButtons.add(time_sleepButton);
+        imageButtons.add(situpButton);
+        imageButtons.add(detoxButton);
+        imageButtons.add(apple_greenButton);
+        imageButtons.add(exerciseButton);
+        imageButtons.add(no_coffeeeButton);
+        imageButtons.add(no_carboButton);
+        imageButtons.add(no_algoholButton);
+        imageButtons.add(brownriceButton);
+
+        for(int i = 0;i<achievements.size();i++){
+            if(!achievements.get(i).isDone()){//UnDone code
+                imageButtons.get(i).setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
+            }
+            else{//Done code
+                imageButtons.get(i).setBackgroundColor(Color.rgb(255, 165, 0));
+            }
+        }
+       //button 1
+
+
         sleepbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,7 +83,8 @@ public class TabDiet_sub1 extends Fragment {
 
 
         //button 2
-        time_sleepButton = (ImageButton)view.findViewById(R.id.time_sleepButton);
+
+
         time_sleepButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +96,7 @@ public class TabDiet_sub1 extends Fragment {
         });
 
         //button 3
-        situpButton = (ImageButton)view.findViewById(R.id.situpButton);
+
         situpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +108,7 @@ public class TabDiet_sub1 extends Fragment {
         });
 
         //button 4
-        detoxButton = (ImageButton)view.findViewById(R.id.detoxButton);
+/*
         detoxButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +124,7 @@ public class TabDiet_sub1 extends Fragment {
         });
 
         //button 5
-        apple_greenButton = (ImageButton)view.findViewById(R.id.apple_greenButton);
+
         apple_greenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +136,7 @@ public class TabDiet_sub1 extends Fragment {
         });
 
         //button 6
-        exerciseButton = (ImageButton)view.findViewById(R.id.exerciseButton);
+
         exerciseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,7 +148,7 @@ public class TabDiet_sub1 extends Fragment {
         });
 
         //button 7
-        no_coffeeeButton = (ImageButton)view.findViewById(R.id.no_coffeeeButton);
+
         no_coffeeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,7 +159,7 @@ public class TabDiet_sub1 extends Fragment {
         });
 
         //button 8
-        no_carboButton = (ImageButton)view.findViewById(R.id.no_carboButton);
+
         no_carboButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +172,7 @@ public class TabDiet_sub1 extends Fragment {
         });
 
         //button 9
-        no_algoholButton = (ImageButton)view.findViewById(R.id.no_algoholButton);
+
         no_algoholButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,7 +183,7 @@ public class TabDiet_sub1 extends Fragment {
         });
 
         //button 10
-        brownriceButton = (ImageButton)view.findViewById(R.id.brownriceButton);
+
         brownriceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,6 +193,8 @@ public class TabDiet_sub1 extends Fragment {
 
             }
         });
+
+        */
         return view;
     }
 
