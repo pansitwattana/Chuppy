@@ -3,6 +3,7 @@ package com.example.pansit.myapplication;
 
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +25,7 @@ import android.widget.Toast;
 public class TabWater extends Fragment {
 
     Button drinkButton;
-    TextView waterPerDay,statusTxt;
+    TextView waterPerDay,statusTxt,name,volume,multiplier;
     String itemSelected;
     String[] cupsize;
 
@@ -31,7 +33,7 @@ public class TabWater extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         //View view = inflater.inflate(R.layout.tab_water,null);
-        Context context = new ContextThemeWrapper(getActivity(), R.style.Theme_AppCompat_Light);//set theme for fragment
+        final Context context = new ContextThemeWrapper(getActivity(), R.style.Theme_AppCompat_Light);//set theme for fragment
         LayoutInflater localInflater = inflater.cloneInContext(context);
         View view = localInflater.inflate(R.layout.tab_water, container, false);
         //View view = inflater.inflate(R.layout.tab_water,container,false);
@@ -48,10 +50,55 @@ public class TabWater extends Fragment {
         }
 
         drinkButton.setOnClickListener(new View.OnClickListener() {
+
+
             int position = 0;
+            int count = 0;
             @Override
             public void onClick(View v) {
+                final Dialog dialog = new Dialog(context);
+                count = 1;
+                dialog.setContentView(R.layout.dialog_drinkwater);
 
+                name = (TextView)dialog.findViewById(R.id.waterTxt);
+                ImageButton imageButton = (ImageButton)dialog.findViewById(R.id.waterButton);
+                volume = (TextView)dialog.findViewById(R.id.volumeTxt);
+                multiplier = (TextView)dialog.findViewById(R.id.multiplierTxt);
+                Button confirm = (Button)dialog.findViewById(R.id.confirm_button);
+                name.setText("Water glass");
+
+
+                imageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        count++;
+                        multiplier.setText("x" + count);
+                    }
+                });
+
+                confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        data.addWaterConsumed(200 * count);
+                        if(data.waterNeedPerDay() >= 0) {
+                            waterPerDay.setText(data.getWaterConsumed() + "/" + data.getWaterPerDay());
+                        }
+                        else{
+                            data.setWaterIsReach();
+                            statusTxt.setText("Status : Full");
+                            if(((NewHome)getActivity()).achievements.get(0).isActive() && ((NewHome)getActivity()).achievements.get(0).addValue()){
+                                showToast("\"FIRST WATER IN DAY\" Achievement Unlocked");
+                            }
+                            waterPerDay.setText(data.getWaterConsumed() + "/" + data.getWaterPerDay());
+                        }
+                        ((NewHome) getActivity()).setData(data);
+                        showToast("You drink water " + (200) + " ml. x" + count);
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+                /*
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
 
                 alertDialog.setTitle("Choose size of cup");
@@ -88,9 +135,10 @@ public class TabWater extends Fragment {
                 alertDialog.setNegativeButton("Cancel", null);
                 alertDialog.create();
                 alertDialog.show();
-
+*/
 
             }
+
         });
 
 

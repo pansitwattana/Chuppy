@@ -35,6 +35,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Queue;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 
 /**
@@ -175,9 +177,9 @@ public class TabFood extends Fragment    {
                         gridMenu.setVisibility(LinearLayout.VISIBLE);
                         break;
                     }
-                    if(i==0)
+                    if (i == 0)
                         gridMenu.setVisibility(LinearLayout.GONE);
-                        listView.setVisibility(ListView.VISIBLE);
+                    listView.setVisibility(ListView.VISIBLE);
 
                     try {
                         if (searchTxt.getText().toString()
@@ -267,8 +269,10 @@ public class TabFood extends Fragment    {
                         data.addDailyFood(food, hour);
                         data.foodRecentIndex = recentIndex;
                         data.foodFavoriteIndex = favIndex;
-                        if(((NewHome)getActivity()).achievements.get(1).isActive() && data.checkCarbTodayIfMoreThan(125)){
-                            ((NewHome)getActivity()).achievements.get(1).addValue();
+                        if (((NewHome) getActivity()).achievements.get(1).isActive() && data.checkCarbTodayIfMoreThan(125)) {
+                            ((NewHome) getActivity()).achievements.get(1).addValue();
+                            if (((NewHome) getActivity()).achievements.get(1).isDone())
+                                showToast("\"CARBON PER DAY 5 TIMES \" Achieved");
                         }
                         ((NewHome) getActivity()).setData(data);
 
@@ -339,11 +343,37 @@ public class TabFood extends Fragment    {
         });
 
 
+        menu1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialog_timer);
+                TextView timeFormat = (TextView)dialog.findViewById(R.id.stoptimeText);
+                Button startTimer = (Button)dialog.findViewById(R.id.button_start);
+                Button stopTimer = (Button)dialog.findViewById(R.id.button_cancle);
 
+                startTimer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
+                stopTimer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
+                dialog.show();
+            }
+        });
 
 
         return view;
     }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

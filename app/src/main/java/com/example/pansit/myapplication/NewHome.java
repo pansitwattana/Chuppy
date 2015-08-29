@@ -79,6 +79,7 @@ public class NewHome extends Activity
         //initialize Achievements
         achievements.add(new Achievement("waterInDay",0,1,"beginner"));//0
         achievements.add(new Achievement("carb125FiveTime",0,5,"beginner"));//1
+        achievements.add(new Achievement("sleep8hours5times",0,5,"beginner"));//2
 
         //if Load from Login Activity
         if(bundle != null){
@@ -104,9 +105,11 @@ public class NewHome extends Activity
         LoadData();
         isLoad = true;
 
-        for(int i = 0;i<achievements.size();i++){
+
+        for (int i = 0; i < data.achieveValue.size(); i++) {
             achievements.get(i).setValue(data.achieveValue.get(i));
         }
+
 
 
 
@@ -389,7 +392,7 @@ public class NewHome extends Activity
             }
             jArray = jsonObject.optJSONArray("achieveValue");
             for(int i =0;i<jArray.length();i++){
-                tmpData.achieveValue.add(jArray.getInt(i));
+                tmpData.achieveValue.set(i,jArray.getInt(i));
             }
 
         }
