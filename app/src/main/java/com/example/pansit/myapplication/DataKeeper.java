@@ -11,6 +11,9 @@ import java.util.Queue;
  * Created by Pansit on 6/3/2015.
  */
 public class DataKeeper implements Serializable{
+
+    final int achievementAmount = 3;
+
     private String user;
     private String password;
     private String email;
@@ -39,7 +42,7 @@ public class DataKeeper implements Serializable{
     public ArrayList<Integer> waterOnDay = new ArrayList<>();
     public ArrayList<Integer> caloriesBurnOnDay = new ArrayList<>();
 
-    public ArrayList<Integer> achieveValue = new ArrayList<>(2);
+    public ArrayList<Integer> achieveValue = new ArrayList<>();
 
 
     //Calories For Men: (10 x weight in kg) + (6.25 x height in cm) - (4.92 x age) + 5
@@ -88,6 +91,9 @@ public class DataKeeper implements Serializable{
             waterOnDay.add(0);
             caloriesBurnOnDay.add(0);
         }
+        for(int i =0;i<achievementAmount;i++){
+            achieveValue.add(0);
+        }
 
 
     }
@@ -101,11 +107,15 @@ public class DataKeeper implements Serializable{
         this.sex = sex;
         this.disease = disease;
         this.foodOnDay = foodOnDay;
-
+        for(int i =0;i<achievementAmount;i++){
+            achieveValue.add(0);
+        }
     }
     public DataKeeper(String user, String password) {
         this(user,password,"Unknow",-1,-1,-1,'0',"Unknow");
-
+        for(int i =0;i<achievementAmount;i++){
+            achieveValue.add(0);
+        }
     }
 
     //Method

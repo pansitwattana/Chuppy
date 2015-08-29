@@ -22,6 +22,9 @@ public class Achievement {
     public void done(){
         isDone = true;
     }
+    public boolean isDone(){
+        return isDone;
+    }
     public boolean isActive(){
         return (value < reachValue);
     }

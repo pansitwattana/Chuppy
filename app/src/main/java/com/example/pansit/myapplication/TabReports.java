@@ -31,6 +31,7 @@ public class TabReports extends Fragment {
     final int AmountBar = 30;
     final int BarColor = Color.parseColor("#fffb8209");
 
+
     DataKeeper data;
     BarGraph barGraph;
 
