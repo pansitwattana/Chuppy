@@ -46,6 +46,42 @@
                 android:mirrorForRtl="false" />
         </LinearLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffffff">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/backgraph_home"
+            android:src="@drawable/arrow1"
+            android:layout_marginLeft="0dp"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Calorie today"
+            android:id="@+id/txtgraph_home"
+            android:layout_marginLeft="96dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/nextgraph_home"
+            android:src="@drawable/arrow2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -66,179 +102,22 @@
                 android:id="@+id/graph"
                 android:layout_weight="1" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Calorie today"
-                android:id="@+id/textView26"
-                android:layout_gravity="center_horizontal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <view
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                class="com.echo.holographlibrary.PieGraph"
-                android:id="@+id/graph2"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Calorie burn"
-                android:id="@+id/textView28"
-                android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/menutext"
+
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#fffd8409"
-        android:layout_weight="4.5">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=" Calorie Today"
-            android:background="#ff262626"
-            android:textColor="#fffdfdfe"
-            android:layout_marginLeft="5dp"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/calBox"
-            android:background="#ffffffff">
-            <TextView
-                android:id="@+id/calGetToday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1900"
-                android:textSize="30dp"
-                android:layout_marginLeft="10dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/calSlash1"
-                android:text="/"
-                android:textSize="30dp" />
-            <TextView
-                android:id="@+id/calMaxToday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2500"
-                android:textSize="30dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Cal"
-                android:textSize="30dp"
-                android:id="@+id/calUnit" />
-        </LinearLayout>
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:id="@+id/foodDailyListView"
-            android:layout_gravity="center_horizontal"
-            android:visibility="gone"
-            android:fastScrollAlwaysVisible="false"
-            android:clickable="false" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=" Calorie Burn"
-            android:background="#ff262626"
-            android:textColor="#fffdfdfe"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/txtw" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/calburnbox"
-            android:background="#ffffffff">
-            <TextView
-                android:id="@+id/calBurnTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="30dp"
-                android:layout_marginLeft="10dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="/"
-                android:textSize="30dp" />
-            <TextView
-                android:id="@+id/calBurnMax"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1900"
-                android:textSize="30dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Cal"
-                android:textSize="30dp"
-                android:id="@+id/calUnit2" />
-        </LinearLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=" Water Today"
-            android:background="#ff262626"
-            android:textColor="#fffdfdfe"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/txtd" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/layout_layout_layout_home"
-            android:background="#ffffffff">
-            <TextView
-                android:id="@+id/waterGetTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="400"
-                android:textSize="30dp"
-                android:layout_marginLeft="10dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="/"
-                android:textSize="30dp" />
-            <TextView
-                android:id="@+id/waterMaxTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1000"
-                android:textSize="30dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" ml"
-                android:textSize="30dp"
-                android:id="@+id/unit" />
-        </LinearLayout>
-    </LinearLayout>
+        android:id="@+id/listView_detail_home"
+        android:layout_weight="4" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="6.7">
+        android:layout_weight="6.5">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
