@@ -202,6 +202,34 @@ public class TabAssit extends Fragment {
                         foodlistfound.add(food_list.get(i));
                         foodfound++;
 
+                        //check num
+                        String foodname = food_list.get(i).getName();
+                        for(int j=0;j<outputtext.length();j++)
+                        {
+
+                            if(outputtext.charAt(j)==foodname.charAt(foodname.length()-1))
+                            {
+                                if(outputtext.charAt(j-1)==foodname.charAt(foodname.length()-2))
+                                {
+                                    if(outputtext.charAt(j-2)==foodname.charAt(foodname.length()-3))
+                                    {
+
+                                        if(outputtext.charAt(j+2) == '2')
+                                        {
+                                            foodlistfound.add(food_list.get(i));
+                                            foodfound++;
+                                        }
+                                        else if(outputtext.charAt(j+2) == '3')
+                                        {
+                                            foodlistfound.add(food_list.get(i));
+                                            foodlistfound.add(food_list.get(i));
+                                            foodfound+=2;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
                     }
 
                 }
