@@ -9,13 +9,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.view.ContextThemeWrapper;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +32,8 @@ public class TabWater extends Fragment {
     TextView waterPerDay,statusTxt,name,volume,multiplier;
     String itemSelected;
     String[] cupsize;
-
+    int count = 1;
+    int itemPosition = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -52,8 +57,8 @@ public class TabWater extends Fragment {
         drinkButton.setOnClickListener(new View.OnClickListener() {
 
 
-            int position = 0;
-            int count = 0;
+
+
             @Override
             public void onClick(View v) {
                 final Dialog dialog = new Dialog(context);
@@ -61,13 +66,35 @@ public class TabWater extends Fragment {
                 dialog.setContentView(R.layout.dialog_drinkwater);
 
                 name = (TextView)dialog.findViewById(R.id.waterTxt);
-                ImageButton imageButton = (ImageButton)dialog.findViewById(R.id.waterButton);
+
                 volume = (TextView)dialog.findViewById(R.id.volumeTxt);
                 multiplier = (TextView)dialog.findViewById(R.id.multiplierTxt);
                 Button confirm = (Button)dialog.findViewById(R.id.confirm_button);
                 name.setText("Water glass");
 
+                ViewPager viewPager = (ViewPager)dialog.findViewById(R.id.view_pager);
+                ImagePagerAdapter adapter = new ImagePagerAdapter();
+                viewPager.setAdapter(adapter);
+                //noinspection deprecation
+                viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                        multiplier.setText("");
+                        count = 1;
+                    }
 
+                    @Override
+                    public void onPageSelected(int position) {
+
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+
+                    }
+                });
+
+                        /*
                 imageButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -75,7 +102,7 @@ public class TabWater extends Fragment {
                         multiplier.setText("x" + count);
                     }
                 });
-
+*/
                 confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -141,10 +168,8 @@ public class TabWater extends Fragment {
 
         });
 
-
-
-
         return view;
+
     }
     @Override
     public void onAttach(Activity activity) {
@@ -154,5 +179,52 @@ public class TabWater extends Fragment {
     }
     public void showToast(CharSequence text){
         Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+    }
+    private class ImagePagerAdapter extends PagerAdapter {
+        private int[] mImages = new int[] {
+                R.drawable.glass200,
+                R.drawable.food_noodles,
+        };
+
+        @Override
+        public int getCount() {
+            return mImages.length;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+
+            return view == ((ImageView) object);
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, final int position) {
+
+            Context context = new ContextThemeWrapper(getActivity(), R.style.Theme_AppCompat_Light);
+            ImageView imageView = new ImageView(context);
+            int padding = context.getResources().getDimensionPixelSize(
+                    R.dimen.padding_medium);
+            imageView.setPadding(padding, padding, padding, padding);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+            imageView.setImageResource(mImages[position]);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    count++;
+                    multiplier.setText("x" + count);
+                    itemPosition = position;
+                }
+            });
+            ((ViewPager) container).addView(imageView, 0);
+            return imageView;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            count=0;
+            multiplier.setText("");
+            ((ViewPager) container).removeView((ImageView) object);
+        }
+
     }
 }

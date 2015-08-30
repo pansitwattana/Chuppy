@@ -35,11 +35,8 @@ public class TabUser extends Fragment {
     //Button waterButton;
     LinearLayout foodButton,activityButton,reportButton,assistanceButton;
     LinearLayout calBox,calburnBox;
-    ArrayList<String> arr_list;
-    ArrayList<Food> breakfastFood;
-    ArrayList<Food> lunchFood;
-    ArrayList<Food> eveningFood;
-    ArrayList<Food> nightFood;
+
+
 
     //check show graph
     int graphnow = 1;
@@ -53,19 +50,12 @@ public class TabUser extends Fragment {
         final Context context = new ContextThemeWrapper(getActivity(), R.style.Theme_AppCompat_Light);//set theme for fragment
         //isOpen = false;
 
-<<<<<<< HEAD
-        DataKeeper data  = ((NewHome) getActivity()).getData();
-        breakfastFood = data.getBreakfastFood();
-        lunchFood = data.getLunchFood();
-        eveningFood = data.getEveningFood();
-        nightFood = data.getNightFood();
-=======
+
         final DataKeeper data  = ((NewHome) getActivity()).getData();
-        ArrayList<Food> breakfastFood = data.getBreakfastFood();
-        ArrayList<Food> lunchFood = data.getLunchFood();
-        ArrayList<Food> eveningFood = data.getEveningFood();
-        ArrayList<Food> nightFood = data.getNightFood();
->>>>>>> Chuppy-develop
+
+
+
+
 
         ProgressBar progressBarlvl;
         progressBarlvl = (ProgressBar) view.findViewById(R.id.lvlprogess);
@@ -86,13 +76,13 @@ public class TabUser extends Fragment {
 
         graphtext.setText("Calorie today");
 
-        graphswitch( data, view);
+        graphswitch(data, view);
 
         btn_arrowback.setOnClickListener(new View.OnClickListener() {
                                              @Override
                                              public void onClick(View v) {
                                                  graphnow--;
-                                                 graphswitch( data, view);
+                                                 graphswitch(data, view);
                                              }
                                          }
 
@@ -110,16 +100,9 @@ public class TabUser extends Fragment {
 
 
 
-<<<<<<< HEAD
 
-        calBox = (LinearLayout) view.findViewById(R.id.calBox);
-        calburnBox = (LinearLayout) view.findViewById(R.id.calburnbox);
-        calGetToday = (TextView) view.findViewById(R.id.calGetToday);
-        calMaxToday = (TextView) view.findViewById(R.id.calMaxToday);
-        calSlash = (TextView) view.findViewById(R.id.calSlash1);
-        calUnit = (TextView) view.findViewById(R.id.calUnit);
-=======
->>>>>>> Chuppy-develop
+
+
 
 
 
@@ -128,20 +111,32 @@ public class TabUser extends Fragment {
         reportButton = (LinearLayout)view.findViewById(R.id.reportButton);
         assistanceButton = (LinearLayout)view.findViewById(R.id.assistantButton);
 
+/*  ArrayList<Food> breakfastFood;
+    ArrayList<Food> lunchFood;
+    ArrayList<Food> eveningFood;
+    ArrayList<Food> nightFood;
 
-<<<<<<< HEAD
+        breakfastFood = data.getBreakfastFood();
+        lunchFood = data.getLunchFood();
+        eveningFood = data.getEveningFood();
+        nightFood = data.getNightFood();
+
+        //calBox = (LinearLayout) view.findViewById(R.id.calBox);
+        //calburnBox = (LinearLayout) view.findViewById(R.id.calburnbox);
+        //calGetToday = (TextView) view.findViewById(R.id.calGetToday);
+        //calMaxToday = (TextView) view.findViewById(R.id.calMaxToday);
+        //calSlash = (TextView) view.findViewById(R.id.calSlash1);
+        //calUnit = (TextView) view.findViewById(R.id.calUnit);
+
         // waterButton = (Button) view.findViewById(R.id.waterButton);
-        calMaxToday.setText("" + data.getCaloriesPerDay());
-        calGetToday.setText("" + data.getCaloriesConsumed());
-        calBurnTxt.setText("" + data.getCaloriesBurned());
-        calBurnMax.setText("" + data.getCaloriesConsumed());
-        waterGetTxt.setText("" + data.getWaterConsumed());
-        waterMaxTxt.setText("" + data.getWaterPerDay());
+        //calMaxToday.setText("" + data.getCaloriesPerDay());
+        //calGetToday.setText("" + data.getCaloriesConsumed());
+        //calBurnTxt.setText("" + data.getCaloriesBurned());
+        //calBurnMax.setText("" + data.getCaloriesConsumed());
+        //waterGetTxt.setText("" + data.getWaterConsumed());
+        //waterMaxTxt.setText("" + data.getWaterPerDay());
 
-
-=======
->>>>>>> Chuppy-develop
-
+*/
 
         /*
         calBox.setOnClickListener(new View.OnClickListener() {
@@ -220,21 +215,20 @@ public class TabUser extends Fragment {
         Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
     }
 
-<<<<<<< HEAD
-    private ArrayList<String> getFoodHistoryToDialog(){
-        arr_list = new ArrayList<String>();
+/*
+    private ArrayList<String> getFoodHistoryToDialog() {
+        ArrayList arr_list = new ArrayList<String>();
         arr_list.add("*MORNING*");
         String tmp = " ";
         int c = 1;
-        if(!breakfastFood.isEmpty()) {
+        if (!breakfastFood.isEmpty()) {
             for (int i = 0; i < breakfastFood.size(); i++) {
-                if(!tmp.equals(breakfastFood.get(i).getName())){
+                if (!tmp.equals(breakfastFood.get(i).getName())) {
                     c = 1;
-                    arr_list.add("->" + breakfastFood.get(i).getName()+" ( "+ breakfastFood.get(i).getCalories() +" Cal. ) ");
-                }
-                else{
+                    arr_list.add("->" + breakfastFood.get(i).getName() + " ( " + breakfastFood.get(i).getCalories() + " Cal. ) ");
+                } else {
                     c++;
-                    arr_list.set(i-1,"->" + breakfastFood.get(i).getName() + ". x" + c + " ( "+ c * breakfastFood.get(i).getCalories() +" Cal. ) ");
+                    arr_list.set(i - 1, "->" + breakfastFood.get(i).getName() + ". x" + c + " ( " + c * breakfastFood.get(i).getCalories() + " Cal. ) ");
                 }
 
 
@@ -244,15 +238,14 @@ public class TabUser extends Fragment {
         tmp = " ";
         c = 1;
         arr_list.add("*NOON*");
-        if(!lunchFood.isEmpty()) {
+        if (!lunchFood.isEmpty()) {
             for (int i = 0; i < lunchFood.size(); i++) {
-                if(!tmp.equals(lunchFood.get(i).getName())){
+                if (!tmp.equals(lunchFood.get(i).getName())) {
                     c = 1;
-                    arr_list.add("->" + lunchFood.get(i).getName()+" ( "+ lunchFood.get(i).getCalories() +" Cal. ) ");
-                }
-                else{
+                    arr_list.add("->" + lunchFood.get(i).getName() + " ( " + lunchFood.get(i).getCalories() + " Cal. ) ");
+                } else {
                     c++;
-                    arr_list.set(i-1,"->" + lunchFood.get(i).getName() + ". x" + c + " ( "+ c * lunchFood.get(i).getCalories() +" Cal. ) ");
+                    arr_list.set(i - 1, "->" + lunchFood.get(i).getName() + ". x" + c + " ( " + c * lunchFood.get(i).getCalories() + " Cal. ) ");
                 }
 
 
@@ -262,15 +255,14 @@ public class TabUser extends Fragment {
         tmp = " ";
         c = 1;
         arr_list.add("*EVENING & NIGHT*");
-        if(!eveningFood.isEmpty()) {
+        if (!eveningFood.isEmpty()) {
             for (int i = 0; i < eveningFood.size(); i++) {
-                if(!tmp.equals(eveningFood.get(i).getName())){
+                if (!tmp.equals(eveningFood.get(i).getName())) {
                     c = 1;
-                    arr_list.add("->" + eveningFood.get(i).getName()+" ( "+ eveningFood.get(i).getCalories() +" Cal. ) ");
-                }
-                else{
+                    arr_list.add("->" + eveningFood.get(i).getName() + " ( " + eveningFood.get(i).getCalories() + " Cal. ) ");
+                } else {
                     c++;
-                    arr_list.set(i-1,"->" + eveningFood.get(i).getName() + ". x" + c + " ( "+ c * eveningFood.get(i).getCalories() +" Cal. ) ");
+                    arr_list.set(i - 1, "->" + eveningFood.get(i).getName() + ". x" + c + " ( " + c * eveningFood.get(i).getCalories() + " Cal. ) ");
                 }
 
 
@@ -279,15 +271,14 @@ public class TabUser extends Fragment {
         }
         tmp = " ";
         c = 1;
-        if(!nightFood.isEmpty()){
-            for(int i = 0;i<nightFood.size();i++){
-                if(!tmp.equals(nightFood.get(i).getName())){
+        if (!nightFood.isEmpty()) {
+            for (int i = 0; i < nightFood.size(); i++) {
+                if (!tmp.equals(nightFood.get(i).getName())) {
                     c = 1;
-                    arr_list.add("->" + nightFood.get(i).getName()+" ( "+ nightFood.get(i).getCalories() +" Cal. ) ");
-                }
-                else{
+                    arr_list.add("->" + nightFood.get(i).getName() + " ( " + nightFood.get(i).getCalories() + " Cal. ) ");
+                } else {
                     c++;
-                    arr_list.set(i-1,"->" + nightFood.get(i).getName() + ". x" + c + " ( "+ c * nightFood.get(i).getCalories() +" Cal. ) ");
+                    arr_list.set(i - 1, "->" + nightFood.get(i).getName() + ". x" + c + " ( " + c * nightFood.get(i).getCalories() + " Cal. ) ");
                 }
 
 
@@ -295,7 +286,9 @@ public class TabUser extends Fragment {
             }
         }
         return arr_list;
-=======
+    }
+    */
+
     public void graphswitch(DataKeeper data ,View view)
     {
         final PieGraph pg = (PieGraph)view.findViewById(R.id.graph);
@@ -535,6 +528,6 @@ public class TabUser extends Fragment {
             graphswitch(data,view);
         }
 
->>>>>>> Chuppy-develop
+
     }
 }
