@@ -85,7 +85,8 @@ public class TabWater extends Fragment {
 
                     @Override
                     public void onPageSelected(int position) {
-
+                        volume.setText(cupsize[position]);
+                        itemPosition = position;
                     }
 
                     @Override
@@ -106,7 +107,7 @@ public class TabWater extends Fragment {
                 confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        data.addWaterConsumed(200 * count);
+                        data.addWaterConsumed(count * Integer.parseInt(cupsize[itemPosition]));
                         if(data.waterNeedPerDay() >= 0) {
                             waterPerDay.setText(data.getWaterConsumed() + "/" + data.getWaterPerDay());
                         }
@@ -119,7 +120,7 @@ public class TabWater extends Fragment {
                             waterPerDay.setText(data.getWaterConsumed() + "/" + data.getWaterPerDay());
                         }
                         ((NewHome) getActivity()).setData(data);
-                        showToast("You drink water " + (200) + " ml. x" + count);
+                        showToast("You drink water " + cupsize[itemPosition] + "ml. x" + count);
                         dialog.dismiss();
                     }
                 });
@@ -212,7 +213,7 @@ public class TabWater extends Fragment {
                 public void onClick(View v) {
                     count++;
                     multiplier.setText("x" + count);
-                    itemPosition = position;
+
                 }
             });
             ((ViewPager) container).addView(imageView, 0);
