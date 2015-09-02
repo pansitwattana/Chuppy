@@ -9,6 +9,10 @@
     <dimen name="genre">13dip</dimen>
     <dimen name="year">12dip</dimen>
 
+    <!-- For Water -->
+    <dimen name="padding_small">4dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
+    <dimen name="padding_large">16dp</dimen>
 
     <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html -->

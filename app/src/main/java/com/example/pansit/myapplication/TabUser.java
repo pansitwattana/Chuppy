@@ -35,8 +35,8 @@ public class TabUser extends Fragment {
     //Button waterButton;
     LinearLayout foodButton,activityButton,reportButton,assistanceButton;
     LinearLayout calBox,calburnBox;
-    ListView foodDailyListView;
-    ArrayList<String> arr_list;
+
+
 
     //check show graph
     int graphnow = 1;
@@ -50,11 +50,12 @@ public class TabUser extends Fragment {
         final Context context = new ContextThemeWrapper(getActivity(), R.style.Theme_AppCompat_Light);//set theme for fragment
         //isOpen = false;
 
+
         final DataKeeper data  = ((NewHome) getActivity()).getData();
-        ArrayList<Food> breakfastFood = data.getBreakfastFood();
-        ArrayList<Food> lunchFood = data.getLunchFood();
-        ArrayList<Food> eveningFood = data.getEveningFood();
-        ArrayList<Food> nightFood = data.getNightFood();
+
+
+
+
 
         ProgressBar progressBarlvl;
         progressBarlvl = (ProgressBar) view.findViewById(R.id.lvlprogess);
@@ -75,13 +76,13 @@ public class TabUser extends Fragment {
 
         graphtext.setText("Calorie today");
 
-        graphswitch( data, view);
+        graphswitch(data, view);
 
         btn_arrowback.setOnClickListener(new View.OnClickListener() {
                                              @Override
                                              public void onClick(View v) {
                                                  graphnow--;
-                                                 graphswitch( data, view);
+                                                 graphswitch(data, view);
                                              }
                                          }
 
@@ -97,31 +98,10 @@ public class TabUser extends Fragment {
 
 
 
-        arr_list = new ArrayList<String>();
-        arr_list.add("*MONRING*");
-        if(!breakfastFood.isEmpty()) {
-            for (int i = 0; i < breakfastFood.size(); i++) {
-                arr_list.add("-" + breakfastFood.get(i).getName());
-            }
-        }
 
-        arr_list.add("*NOON*");
-        if(!lunchFood.isEmpty()) {
-            for (int i = 0; i < lunchFood.size(); i++) {
-                arr_list.add("- " + lunchFood.get(i).getName()+" ( "+lunchFood.get(i).getCalories()+" Cal. ) ");
-            }
-        }
-        arr_list.add("*EVENING & NIGHT*");
-        if(!eveningFood.isEmpty()) {
-            for (int i = 0; i < eveningFood.size(); i++) {
-                arr_list.add("- " + eveningFood.get(i).getName()+" ( "+eveningFood.get(i).getCalories()+" Cal. ) ");
-            }
-        }
-        if(!nightFood.isEmpty()){
-            for(int i = 0;i<nightFood.size();i++){
-                arr_list.add("- " + nightFood.get(i).getName()+" ( "+nightFood.get(i).getCalories()+" Cal. ) ");
-            }
-        }
+
+
+
 
 
 
@@ -131,16 +111,39 @@ public class TabUser extends Fragment {
         reportButton = (LinearLayout)view.findViewById(R.id.reportButton);
         assistanceButton = (LinearLayout)view.findViewById(R.id.assistantButton);
 
+/*  ArrayList<Food> breakfastFood;
+    ArrayList<Food> lunchFood;
+    ArrayList<Food> eveningFood;
+    ArrayList<Food> nightFood;
 
+        breakfastFood = data.getBreakfastFood();
+        lunchFood = data.getLunchFood();
+        eveningFood = data.getEveningFood();
+        nightFood = data.getNightFood();
 
+        //calBox = (LinearLayout) view.findViewById(R.id.calBox);
+        //calburnBox = (LinearLayout) view.findViewById(R.id.calburnbox);
+        //calGetToday = (TextView) view.findViewById(R.id.calGetToday);
+        //calMaxToday = (TextView) view.findViewById(R.id.calMaxToday);
+        //calSlash = (TextView) view.findViewById(R.id.calSlash1);
+        //calUnit = (TextView) view.findViewById(R.id.calUnit);
+
+        // waterButton = (Button) view.findViewById(R.id.waterButton);
+        //calMaxToday.setText("" + data.getCaloriesPerDay());
+        //calGetToday.setText("" + data.getCaloriesConsumed());
+        //calBurnTxt.setText("" + data.getCaloriesBurned());
+        //calBurnMax.setText("" + data.getCaloriesConsumed());
+        //waterGetTxt.setText("" + data.getWaterConsumed());
+        //waterMaxTxt.setText("" + data.getWaterPerDay());
+
+*/
 
         /*
         calBox.setOnClickListener(new View.OnClickListener() {
                   @Override
                   public void onClick(View v) {
 
-
-
+                      arr_list = getFoodHistoryToDialog();
                       final Dialog dialog = new Dialog(context);
                       dialog.setTitle("Food History");
                       dialog.setContentView(R.layout.foodhistory_dialog);
@@ -211,6 +214,80 @@ public class TabUser extends Fragment {
     public void showToast(CharSequence text){
         Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
     }
+
+/*
+    private ArrayList<String> getFoodHistoryToDialog() {
+        ArrayList arr_list = new ArrayList<String>();
+        arr_list.add("*MORNING*");
+        String tmp = " ";
+        int c = 1;
+        if (!breakfastFood.isEmpty()) {
+            for (int i = 0; i < breakfastFood.size(); i++) {
+                if (!tmp.equals(breakfastFood.get(i).getName())) {
+                    c = 1;
+                    arr_list.add("->" + breakfastFood.get(i).getName() + " ( " + breakfastFood.get(i).getCalories() + " Cal. ) ");
+                } else {
+                    c++;
+                    arr_list.set(i - 1, "->" + breakfastFood.get(i).getName() + ". x" + c + " ( " + c * breakfastFood.get(i).getCalories() + " Cal. ) ");
+                }
+
+
+                tmp = breakfastFood.get(i).getName();
+            }
+        }
+        tmp = " ";
+        c = 1;
+        arr_list.add("*NOON*");
+        if (!lunchFood.isEmpty()) {
+            for (int i = 0; i < lunchFood.size(); i++) {
+                if (!tmp.equals(lunchFood.get(i).getName())) {
+                    c = 1;
+                    arr_list.add("->" + lunchFood.get(i).getName() + " ( " + lunchFood.get(i).getCalories() + " Cal. ) ");
+                } else {
+                    c++;
+                    arr_list.set(i - 1, "->" + lunchFood.get(i).getName() + ". x" + c + " ( " + c * lunchFood.get(i).getCalories() + " Cal. ) ");
+                }
+
+
+                tmp = lunchFood.get(i).getName();
+            }
+        }
+        tmp = " ";
+        c = 1;
+        arr_list.add("*EVENING & NIGHT*");
+        if (!eveningFood.isEmpty()) {
+            for (int i = 0; i < eveningFood.size(); i++) {
+                if (!tmp.equals(eveningFood.get(i).getName())) {
+                    c = 1;
+                    arr_list.add("->" + eveningFood.get(i).getName() + " ( " + eveningFood.get(i).getCalories() + " Cal. ) ");
+                } else {
+                    c++;
+                    arr_list.set(i - 1, "->" + eveningFood.get(i).getName() + ". x" + c + " ( " + c * eveningFood.get(i).getCalories() + " Cal. ) ");
+                }
+
+
+                tmp = eveningFood.get(i).getName();
+            }
+        }
+        tmp = " ";
+        c = 1;
+        if (!nightFood.isEmpty()) {
+            for (int i = 0; i < nightFood.size(); i++) {
+                if (!tmp.equals(nightFood.get(i).getName())) {
+                    c = 1;
+                    arr_list.add("->" + nightFood.get(i).getName() + " ( " + nightFood.get(i).getCalories() + " Cal. ) ");
+                } else {
+                    c++;
+                    arr_list.set(i - 1, "->" + nightFood.get(i).getName() + ". x" + c + " ( " + c * nightFood.get(i).getCalories() + " Cal. ) ");
+                }
+
+
+                tmp = nightFood.get(i).getName();
+            }
+        }
+        return arr_list;
+    }
+    */
 
     public void graphswitch(DataKeeper data ,View view)
     {
@@ -450,6 +527,7 @@ public class TabUser extends Fragment {
             graphnow = 1;
             graphswitch(data,view);
         }
+
 
     }
 }

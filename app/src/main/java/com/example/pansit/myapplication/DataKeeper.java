@@ -275,7 +275,7 @@ public class DataKeeper implements Serializable{
 
 
 
-    private ArrayList<Food> getTodayFood(){
+    public ArrayList<Food> getTodayFood(){
         ArrayList<Food> todayFood = new ArrayList<Food>();
         for(int i = 0;i<breakfastFood.size();i++)
             todayFood.add(breakfastFood.get(i));
