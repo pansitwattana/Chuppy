@@ -378,14 +378,14 @@ public class TabFood extends Fragment    {
 
     private DataKeeper CheckAchievements(DataKeeper inputData) {
         DataKeeper data = inputData;
-        if (((NewHome) getActivity()).achievements.get(1).isActive() && data.checkCarbTodayIfMoreThan(125)) {
-            ((NewHome) getActivity()).achievements.get(1).addValue();
-            if (((NewHome) getActivity()).achievements.get(1).isDone())
+        if (((NewHome) getActivity()).achievements.get(6).isActive() && data.checkCarbTodayIfMoreThan(125)) {
+            ((NewHome) getActivity()).achievements.get(6).addValue();
+            if (((NewHome) getActivity()).achievements.get(6).isDone())
                 showToast("\"CARBON PER DAY 5 TIMES \" Achieved");
         }
         if(data.getTodayFood().size() >= 3 && data.getCaloriesConsumed() < data.getCaloriesPerDay()){
-            ((NewHome) getActivity()).achievements.get(3).addValue();
-            if (((NewHome) getActivity()).achievements.get(3).isDone())
+            ((NewHome) getActivity()).achievements.get(1).addValue();
+            if (((NewHome) getActivity()).achievements.get(1).isDone())
                 showToast("\"FIRST HEALTHY \" Achieved");
         }
         return data;

@@ -61,7 +61,7 @@ public class TabDiet_sub1 extends Fragment {
                 imageButtons.get(i).setBackgroundColor(Color.rgb(255, 165, 0));
             }
         }
-        imageButtons.get(0).setOnClickListener(new View.OnClickListener() {
+        waterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -79,7 +79,7 @@ public class TabDiet_sub1 extends Fragment {
             }
         });
 
-        imageButtons.get(2).setOnClickListener(new View.OnClickListener() {
+        time_sleepButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -88,7 +88,7 @@ public class TabDiet_sub1 extends Fragment {
             }
         });
 
-        imageButtons.get(3).setOnClickListener(new View.OnClickListener() {
+        apple_greenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -97,7 +97,7 @@ public class TabDiet_sub1 extends Fragment {
             }
         });
 
-        imageButtons.get(4).setOnClickListener(new View.OnClickListener() {
+        no_coffeeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -106,7 +106,7 @@ public class TabDiet_sub1 extends Fragment {
             }
         });
 
-        imageButtons.get(5).setOnClickListener(new View.OnClickListener() {
+        bananaButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

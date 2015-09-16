@@ -57,7 +57,7 @@ public class TabUser extends Fragment {
 
 
 
-
+        showAlert(view);
 
         ProgressBar progressBarlvl;
         progressBarlvl = (ProgressBar) view.findViewById(R.id.lvlprogess);
@@ -589,7 +589,7 @@ public class TabUser extends Fragment {
     //---------------showalert
 
     public void showAlert(View view){
-        AlertDialog.Builder chuppyAlert = new AlertDialog.Builder(this);
+        AlertDialog.Builder chuppyAlert = new AlertDialog.Builder(view.getContext());
         chuppyAlert.setMessage("You are winner!")
                 .setPositiveButton("Close", new DialogInterface.OnClickListener() {
                     @Override
