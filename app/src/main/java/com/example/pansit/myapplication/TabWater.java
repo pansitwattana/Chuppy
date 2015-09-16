@@ -70,6 +70,7 @@ public class TabWater extends Fragment {
                 volume = (TextView)dialog.findViewById(R.id.volumeTxt);
                 multiplier = (TextView)dialog.findViewById(R.id.multiplierTxt);
                 Button confirm = (Button)dialog.findViewById(R.id.confirm_button);
+                Button close = (Button)dialog.findViewById(R.id.button_close_water);
                 name.setText("Water glass");
 
                 ViewPager viewPager = (ViewPager)dialog.findViewById(R.id.view_pager);
@@ -125,6 +126,13 @@ public class TabWater extends Fragment {
                     }
                 });
 
+                close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        dialog.dismiss();
+                    }
+                });
                 dialog.show();
                 /*
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());

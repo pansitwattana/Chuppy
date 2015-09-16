@@ -37,7 +37,11 @@ public class TabAssit extends Fragment {
 
     Button comfirmButton;
     ImageButton talkagainButton;
+
+
     ArrayList<String> talking_list = new ArrayList<String>();
+    ArrayList<String> nametalking_list = new ArrayList<String>();
+    ArrayList<String> pictalking_list = new ArrayList<String>();  // 0 chuppy 1 me
 
     ArrayList<Food> food_list = new ArrayList<Food>();
     DataKeeper memberdata ;
@@ -73,11 +77,17 @@ public class TabAssit extends Fragment {
         talkagainButton= (ImageButton) view.findViewById(R.id.button_talkagain);
         talkinglistView = (ListView) view.findViewById(R.id.talkinglistView);
 
+
+
+
+        nametalking_list.add("Chuppy :");
+        pictalking_list.add("0");
         talking_list.add("Talk to Chuppy by Click Microphone Button ");
 
-        talkinglistView.setAdapter(new ArrayAdapter(getActivity()
-                , android.R.layout.simple_list_item_1
-                , talking_list));
+
+
+        customtalking_detail_home_Adapter talkingadapter = new customtalking_detail_home_Adapter(getActivity(),talking_list,nametalking_list,pictalking_list);
+        talkinglistView.setAdapter(talkingadapter);
 
         talkagainButton.setOnClickListener(new View.OnClickListener() {
 
@@ -154,11 +164,11 @@ public class TabAssit extends Fragment {
         if(checkspeakend == true)
         {
 
-
-            talking_list.add(memberdata.getUser()+": " + outputtext);
+            pictalking_list.add("1");
+            talking_list.add(outputtext);
 
             outputtext+=" "+conditext;
-
+            outputtext+="     ";
             //outputtext = "i drink water 100";
             if (outputtext.toLowerCase().contains("help")) {
 
@@ -358,7 +368,10 @@ public class TabAssit extends Fragment {
 
                             Double drinkwater = Double.parseDouble(outputtext);
                             memberdata.addWaterConsumed(drinkwater.intValue());
-                            talking_list.add("Chuppy: Ok i insert " + outputtext + " mml. of water");
+
+                            nametalking_list.add("Chuppy : ");
+                            pictalking_list.add("0");
+                            talking_list.add(" Ok i insert " + outputtext + " mml. of water");
 
                             dialog.dismiss();
                         }});
@@ -374,23 +387,29 @@ public class TabAssit extends Fragment {
                 }
                 else
                 {
-                    talking_list.add("Chuppy: i don't know how many water are you drink ?");
+                    nametalking_list.add("Chuppy : ");
+                    pictalking_list.add("0");
+                    talking_list.add("i don't know how many water are you drink ?");
                 }
 
             }
             else
             {
-
-                talking_list.add("Chuppy: I don't know what are you talking about ");
+                nametalking_list.add("Chuppy : ");
+                pictalking_list.add("0");
+                talking_list.add("I don't know what are you talking about ");
 
 
             }
 
-            talkinglistView.setAdapter(new ArrayAdapter(getActivity()
-                    , android.R.layout.simple_list_item_1
-                    , talking_list));
+            customtalking_detail_home_Adapter talkingadapter = new customtalking_detail_home_Adapter(getActivity(),talking_list,nametalking_list,pictalking_list);
+            talkinglistView.setAdapter(talkingadapter);
+
 
             talking_list = new ArrayList<String>();
+            pictalking_list = new ArrayList<String>();
+            nametalking_list = new ArrayList<String>();
+
             checkspeakend = false;
         }
 

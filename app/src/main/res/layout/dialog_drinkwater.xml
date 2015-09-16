@@ -12,7 +12,8 @@
         android:textSize="40dp"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp" />
 
 
     <android.support.v4.view.ViewPager
@@ -57,10 +58,33 @@
             android:text=" " />
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="OK"
-        android:id="@+id/confirm_button"
-        android:layout_gravity="center_horizontal" />
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Confirm"
+            android:id="@+id/confirm_button"
+            android:layout_weight="1"
+            android:background="#fffd8409"
+            android:textColor="#ffffffff" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Close"
+            android:id="@+id/button_close_water"
+            android:layout_weight="1"
+            android:background="#ff262626"
+            android:textColor="#ffffffff" />
+
+    </LinearLayout>
+
 </LinearLayout>

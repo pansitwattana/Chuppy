@@ -52,7 +52,7 @@ public class customgetfood_assit_Adapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.fooddialog_assit_list_row, null);
 
         ImageView foodpic = (ImageView) convertView.findViewById(R.id.foodpic_assit_dialog);
-        TextView foodname = (TextView) convertView.findViewById(R.id.headtext_listview_home);
+        TextView foodname = (TextView) convertView.findViewById(R.id.foodname_assit_dialog);
         TextView foodres = (TextView) convertView.findViewById(R.id.foodres_assit_dialog);
         TextView foodtype = (TextView) convertView.findViewById(R.id.foodtype_assit_dialog);
         TextView foodcal = (TextView) convertView.findViewById(R.id.foodcal_assit_dialog);
