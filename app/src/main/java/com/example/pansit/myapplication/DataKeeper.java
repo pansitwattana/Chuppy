@@ -12,7 +12,7 @@ import java.util.Queue;
  */
 public class DataKeeper implements Serializable{
 
-    final int achievementAmount = 3;
+    final int achievementAmount = 7;
 
     private String user;
     private String password;
@@ -91,7 +91,7 @@ public class DataKeeper implements Serializable{
             waterOnDay.add(0);
             caloriesBurnOnDay.add(0);
         }
-        for(int i =0;i<achievementAmount;i++){
+        for(int i =0;i<achievementAmount+1;i++){
             achieveValue.add(0);
         }
 
@@ -276,7 +276,7 @@ public class DataKeeper implements Serializable{
 
 
     public ArrayList<Food> getTodayFood(){
-        ArrayList<Food> todayFood = new ArrayList<Food>();
+        ArrayList<Food> todayFood = new ArrayList<>();
         for(int i = 0;i<breakfastFood.size();i++)
             todayFood.add(breakfastFood.get(i));
         for(int i = 0;i<lunchFood.size();i++)
@@ -301,10 +301,10 @@ public class DataKeeper implements Serializable{
         caloriesBurned = 0;
         caloriesConsumed = 0;
         waterConsumed = 0;
-        breakfastFood = new ArrayList<Food>();
-        lunchFood = new ArrayList<Food>();
-        eveningFood = new ArrayList<Food>();
-        nightFood = new ArrayList<Food>();
+        breakfastFood = new ArrayList<>();
+        lunchFood = new ArrayList<>();
+        eveningFood = new ArrayList<>();
+        nightFood = new ArrayList<>();
     }
 
     public boolean checkCarbTodayIfMoreThan(int needCarb){

@@ -80,6 +80,11 @@ public class NewHome extends Activity
         achievements.add(new Achievement("waterInDay",0,1,"beginner"));//0
         achievements.add(new Achievement("carb125FiveTime",0,5,"beginner"));//1
         achievements.add(new Achievement("sleep8hours5times",0,5,"beginner"));//2
+        achievements.add(new Achievement("1sthealthy",0,1,"beginner"));//3
+        achievements.add(new Achievement("1stunfat",0,1,"beginner"));//4
+        achievements.add(new Achievement("1stvet",0,1,"beginner"));//5
+        achievements.add(new Achievement("1stexercise",0,1,"beginner"));//6
+        achievements.add(new Achievement("1stdrink",0,1,"beginner"));//7
 
         //if Load from Login Activity
         if(bundle != null){

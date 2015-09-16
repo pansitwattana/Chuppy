@@ -300,6 +300,7 @@ public class TabUser extends Fragment {
         ArrayList<String> detailname = new ArrayList<String>();
         ArrayList<String> valname = new ArrayList<String>();
         ArrayList<String> colorname = new ArrayList<String>();
+        ArrayList<String> percentext = new ArrayList<String>();
         customdetail_home_Adapter adapter;
 
 
@@ -315,9 +316,18 @@ public class TabUser extends Fragment {
         {
             // graph1
 
+
             graphtext.setText("Calorie today");
 
             pg.setDuration(2000);//default if unspecified is 300 ms
+
+            int percentval01 = 0;
+            int percentval02 = 0;
+
+            percentval01 =  caleat*100/(calperday+caleat);
+
+            percentval02 = calperday*100/(calperday+caleat);
+
 
             if(calperday >= caleat)
             {
@@ -355,14 +365,17 @@ public class TabUser extends Fragment {
             detailname.add("Calorie Today : ");
             valname.add(data.getCaloriesConsumed() + " cal");
             colorname.add(textcolor2);
-
+            percentext.add(percentval01+"%");
 
             detailname.add("Calorie Per Day : ");
             valname.add(data.getCaloriesPerDay()+" cal");
             colorname.add(textcolor1);
+            percentext.add(percentval02+"%");
 
-            adapter = new customdetail_home_Adapter(getActivity(), detailname,colorname,valname);
+            adapter = new customdetail_home_Adapter(getActivity(), detailname,colorname,valname,percentext);
             detail_listview.setAdapter(adapter);
+
+
         }
         else if(graphnow == 2)
         {
@@ -373,12 +386,27 @@ public class TabUser extends Fragment {
             textcolor1 = "#ff262626";
             textcolor2 = "#ff16b405";
 
+            int percentval01 = 0;
+            int percentval02 = 0;
+
+
+
 
             PieGraph pg2 = pg;
             // pg2.setDuration(2000);//default if unspecified is 300 ms
 
-
+            calburn = data.getCaloriesBurned();
             caleat = data.getCaloriesConsumed();
+
+            if(calburn+caleat!=0)
+            {
+
+                percentval01 =  calburn*100/(calburn+caleat);
+                percentval02 = caleat*100/(calburn+caleat);
+            }
+
+
+
             if(caleat >= calburn)
             {
                 if(caleat != 0) {
@@ -424,13 +452,14 @@ public class TabUser extends Fragment {
             detailname.add("Calorie Burn : ");
             valname.add(data.getCaloriesBurned() + " cal");
             colorname.add(textcolor2);
-
+            percentext.add(percentval01+"%");
 
             detailname.add("Calorie Today : ");
             valname.add(data.getCaloriesConsumed() + " cal");
             colorname.add(textcolor1);
+            percentext.add(percentval02+"%");
 
-            adapter = new customdetail_home_Adapter(getActivity(), detailname,colorname,valname);
+            adapter = new customdetail_home_Adapter(getActivity(), detailname,colorname,valname,percentext);
             detail_listview.setAdapter(adapter);
 
         }
@@ -452,6 +481,24 @@ public class TabUser extends Fragment {
 
 
             }
+
+            int percentval01 = 0;
+            int percentval02 = 0;
+            int percentval03 = 0;
+            int percentval04 = 0;
+            int percentval05 = 0;
+
+            int sumofval = fatval+choresval+sodiumval+carboval+proteinval-5;
+            if(sumofval !=0)
+            {
+
+                percentval01 = (fatval-1)*100/sumofval;
+                percentval02 = (choresval-1)*100/sumofval;
+                percentval03 = (sodiumval-1)*100/sumofval;
+                percentval04 = (carboval-1)*100/sumofval;
+                percentval05 = (proteinval-1)*100/sumofval;
+            }
+
 
 
             // 1 fat
@@ -491,27 +538,31 @@ public class TabUser extends Fragment {
 
             // list view
             detailname.add("Fat Today : ");
-            valname.add(fatval-1 + " mmg");
+            valname.add(fatval - 1 + " mmg");
             colorname.add("#fffd8409");
-
+            percentext.add(percentval01+"%");
 
             detailname.add("Cholesterol Today : ");
             valname.add(choresval-1 + " mmg");
             colorname.add("#FFD10AA6");
+            percentext.add(percentval02+"%");
 
             detailname.add("Sodium Today : ");
             valname.add(sodiumval-1 + " mmg");
             colorname.add("#FF34CB14");
+            percentext.add(percentval03+"%");
 
             detailname.add("Carbohydrate Today : ");
             valname.add(carboval-1 + " mmg");
             colorname.add("#ff2f95be");
+            percentext.add(percentval04+"%");
 
             detailname.add("Protein Today : ");
             valname.add(proteinval-1 + " mmg");
             colorname.add("#FFFDEB37");
+            percentext.add(percentval05+"%");
 
-            adapter = new customdetail_home_Adapter(getActivity(), detailname,colorname,valname);
+            adapter = new customdetail_home_Adapter(getActivity(), detailname,colorname,valname,percentext);
             detail_listview.setAdapter(adapter);
 
         }
@@ -527,6 +578,7 @@ public class TabUser extends Fragment {
             graphnow = 1;
             graphswitch(data,view);
         }
+
 
 
     }

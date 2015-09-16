@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class TabDiet_sub1 extends Fragment {
 
 
-    ImageButton sleepbutton,time_sleepButton,situpButton,detoxButton,apple_greenButton,exerciseButton,no_coffeeeButton,no_carboButton,no_algoholButton,brownriceButton;
+    ImageButton bananaButon,waterButton,sleepbutton,time_sleepButton,apple_greenButton,no_coffeeeButton;
     ArrayList<ImageButton> imageButtons = new ArrayList<>();
     ArrayList<Achievement> achievements;
     Dialog dialog;
@@ -40,28 +40,20 @@ public class TabDiet_sub1 extends Fragment {
 
         sleepbutton = (ImageButton)view.findViewById(R.id.sleepbutton);
         time_sleepButton = (ImageButton)view.findViewById(R.id.time_sleepButton);
-        situpButton = (ImageButton)view.findViewById(R.id.situpButton);
-        detoxButton = (ImageButton)view.findViewById(R.id.detoxButton);
+        waterButton = (ImageButton)view.findViewById(R.id.drinkWaterbutton);
         apple_greenButton = (ImageButton)view.findViewById(R.id.apple_greenButton);
-        exerciseButton = (ImageButton)view.findViewById(R.id.exerciseButton);
-        no_coffeeeButton = (ImageButton)view.findViewById(R.id.no_coffeeeButton);
-        no_carboButton = (ImageButton)view.findViewById(R.id.no_carboButton);
-        no_algoholButton = (ImageButton)view.findViewById(R.id.no_algoholButton);
-        brownriceButton = (ImageButton)view.findViewById(R.id.brownriceButton);
+        no_coffeeeButton = (ImageButton)view.findViewById(R.id.noCoffee);
+        bananaButon = (ImageButton)view.findViewById(R.id.bananaButton);
         //sleepbutton,time_sleepButton,situpButton,detoxButton,apple_greenButton,exerciseButton,
         // no_coffeeeButton,no_carboButton,no_algoholButton,brownriceButton
         imageButtons.add(sleepbutton);
         imageButtons.add(time_sleepButton);
-        imageButtons.add(situpButton);
-        imageButtons.add(detoxButton);
+        imageButtons.add(waterButton);
         imageButtons.add(apple_greenButton);
-        imageButtons.add(exerciseButton);
         imageButtons.add(no_coffeeeButton);
-        imageButtons.add(no_carboButton);
-        imageButtons.add(no_algoholButton);
-        imageButtons.add(brownriceButton);
+        imageButtons.add(bananaButon);
 
-        for(int i = 0;i<achievements.size();i++){
+        for(int i = 0;i<imageButtons.size();i++){//7 achievements
             if(!achievements.get(i).isDone()){//UnDone code
                 imageButtons.get(i).setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
             }
@@ -69,6 +61,80 @@ public class TabDiet_sub1 extends Fragment {
                 imageButtons.get(i).setBackgroundColor(Color.rgb(255, 165, 0));
             }
         }
+        imageButtons.get(0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showcouserdialog("First Water Reach", "-drink water reach in day", context);
+
+            }
+        });
+
+        imageButtons.get(1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showcouserdialog("Carbohydrate Comtrol I", "-control carbohydrate 125g per day 5 times", context);
+
+            }
+        });
+
+        imageButtons.get(2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showcouserdialog("Sleep Time", "-sleep more than 8 hour 5 day", context);
+
+            }
+        });
+
+        imageButtons.get(3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showcouserdialog("First Healthy", "-3 meal in a day/n-calories not over the limit", context);
+
+            }
+        });
+
+        imageButtons.get(4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showcouserdialog("First Unfat", "-don't eat fat more than 30% of calories intake", context);
+
+            }
+        });
+
+        imageButtons.get(5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showcouserdialog("First Vegetarian", "-eat fiber more than xxx g", context);
+
+            }
+        });
+/*
+        imageButtons.get(6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showcouserdialog("First Exercise", "-first time exercise", context);
+
+            }
+        });
+
+        imageButtons.get(7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showcouserdialog("First Drink", "-first time drink", context);
+
+            }
+        });
+
+        */
+        /*
        //button 1
 
 
@@ -108,7 +174,7 @@ public class TabDiet_sub1 extends Fragment {
         });
 
         //button 4
-/*
+
         detoxButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -272,13 +272,11 @@ public class TabFood extends Fragment    {
                         }
                         data.foodRecentIndex = recentIndex;
                         data.foodFavoriteIndex = favIndex;
-                        if (((NewHome) getActivity()).achievements.get(1).isActive() && data.checkCarbTodayIfMoreThan(125)) {
-                            ((NewHome) getActivity()).achievements.get(1).addValue();
-                            if (((NewHome) getActivity()).achievements.get(1).isDone())
-                                showToast("\"CARBON PER DAY 5 TIMES \" Achieved");
-                        }
 
-                        ((NewHome) getActivity()).setData(data);
+
+
+
+                        ((NewHome) getActivity()).setData(CheckAchievements(data));
 
                         showToast("You eat " + food.getName() +
                                 " for " + cal + " cal. x" + amount);
@@ -376,6 +374,21 @@ public class TabFood extends Fragment    {
 
 
         return view;
+    }
+
+    private DataKeeper CheckAchievements(DataKeeper inputData) {
+        DataKeeper data = inputData;
+        if (((NewHome) getActivity()).achievements.get(1).isActive() && data.checkCarbTodayIfMoreThan(125)) {
+            ((NewHome) getActivity()).achievements.get(1).addValue();
+            if (((NewHome) getActivity()).achievements.get(1).isDone())
+                showToast("\"CARBON PER DAY 5 TIMES \" Achieved");
+        }
+        if(data.getTodayFood().size() >= 3 && data.getCaloriesConsumed() < data.getCaloriesPerDay()){
+            ((NewHome) getActivity()).achievements.get(3).addValue();
+            if (((NewHome) getActivity()).achievements.get(3).isDone())
+                showToast("\"FIRST HEALTHY \" Achieved");
+        }
+        return data;
     }
 
     @Override
