@@ -3,6 +3,7 @@ package com.example.pansit.myapplication;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.ContextThemeWrapper;
@@ -47,6 +48,14 @@ public class TabDiet_sub2 extends Fragment {
         imageButtons.add(tmp);
         tmp = (ImageButton)view.findViewById(R.id.Breakfast);
         imageButtons.add(tmp);
+
+        for(int i = 6;i<8;i++){//7 achievements
+            if(achievements.get(i).isDone()){//Done code
+                imageButtons.get(i-6).setBackgroundColor(Color.rgb(255, 165, 0));
+            }
+
+        }
+
 
         imageButtons.get(0).setOnClickListener(new View.OnClickListener() {
             @Override
