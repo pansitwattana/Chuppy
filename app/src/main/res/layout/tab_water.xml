@@ -9,10 +9,18 @@
         android:layout_height="wrap_content"
         android:text="Water"
         android:textSize="25sp"
-        android:layout_gravity="center_horizontal"
-        android:textColor="#fffb8209"
+        android:textColor="#fffb7c89"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"></TextView>
+        android:layout_marginTop="5dp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="156dp"></TextView>
+
+    <ImageView
+        android:layout_width="208dp"
+        android:layout_height="150dp"
+        android:id="@+id/imageView13"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/rabbit" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,3 +52,4 @@
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
+

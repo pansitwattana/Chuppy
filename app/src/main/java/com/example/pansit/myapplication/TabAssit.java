@@ -31,7 +31,7 @@ public class TabAssit extends Fragment {
 
     Calendar calendar;
 
-     Context context;
+    Context context;
 
     ListView talkinglistView,dialogwaterlistview;
 
@@ -58,7 +58,7 @@ public class TabAssit extends Fragment {
     public String conditext="";
     int foodadress = 0;
 
-     public static  Dialog dialog;
+    public static  Dialog dialog;
     public static customgetfood_assit_Adapter adapter;
     public static ListView  dialogfoodlistview;
     @Override
@@ -247,55 +247,55 @@ public class TabAssit extends Fragment {
 
                 //after serch food
 
-            if(foodfound > 0)
-            {
+                if(foodfound > 0)
+                {
 
-                dialog = new Dialog(context);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.tab_assi_confirm_dialog);
+                    dialog = new Dialog(context);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.tab_assi_confirm_dialog);
 
-                TextView textView = (TextView) dialog.findViewById(R.id.assi_dialog_txt);
-                Button confirmbtn = (Button) dialog.findViewById(R.id.assi_dialog_conbtn);
-                Button exitfirmbtn = (Button) dialog.findViewById(R.id.assi_dialog_exitbtn);
-                textView.setText("Chuppy: OK!! i know you are eating ");
+                    TextView textView = (TextView) dialog.findViewById(R.id.assi_dialog_txt);
+                    Button confirmbtn = (Button) dialog.findViewById(R.id.assi_dialog_conbtn);
+                    Button exitfirmbtn = (Button) dialog.findViewById(R.id.assi_dialog_exitbtn);
+                    textView.setText("Chuppy: OK!! i know you are eating ");
 
-                dialogfoodlistview = (ListView) dialog.findViewById(R.id.fooddialog_assit);
+                    dialogfoodlistview = (ListView) dialog.findViewById(R.id.fooddialog_assit);
 
-                adapter = new customgetfood_assit_Adapter(getActivity(), foodlistfound);
-                dialogfoodlistview.setAdapter(adapter);
-
-
+                    adapter = new customgetfood_assit_Adapter(getActivity(), foodlistfound);
+                    dialogfoodlistview.setAdapter(adapter);
 
 
 
 
-                confirmbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
 
-                        for(int i=0;i<foodlistfound.size();i++)
-                        {
-                            Food food = foodlistfound.get(i);
-                            memberdata.addCaloriesConsumed(foodlistfound.get(i).getCalories());
-                            memberdata.addDailyFood(food, hour);
 
+                    confirmbtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            for(int i=0;i<foodlistfound.size();i++)
+                            {
+                                Food food = foodlistfound.get(i);
+                                memberdata.addCaloriesConsumed(foodlistfound.get(i).getCalories());
+                                memberdata.addDailyFood(food, hour);
+
+                            }
+
+
+                            dialog.dismiss();
+                        }});
+
+                    exitfirmbtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+                            dialog.dismiss();
                         }
+                    });
 
-
-                        dialog.dismiss();
-                    }});
-
-                exitfirmbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-            }
+                    dialog.show();
+                }
 
 
                /* if(outputtext.toLowerCase().contains("mama"))
@@ -349,7 +349,7 @@ public class TabAssit extends Fragment {
                         conditext ="";
                     */
 
-                        outputtext = outputtext.replaceAll("[^-?0-9]+", " ");
+                    outputtext = outputtext.replaceAll("[^-?0-9]+", " ");
 
 
                     dialog = new Dialog(context);
@@ -419,3 +419,4 @@ public class TabAssit extends Fragment {
 
 
 }
+

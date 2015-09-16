@@ -77,14 +77,15 @@ public class NewHome extends Activity
         name = sharedPreferences.getString("Username", "Error");
 
         //initialize Achievements
-        achievements.add(new Achievement("waterInDay",0,1,"beginner"));//0
-        achievements.add(new Achievement("carb125FiveTime",0,5,"beginner"));//1
-        achievements.add(new Achievement("sleep8hours5times",0,5,"beginner"));//2
-        achievements.add(new Achievement("1sthealthy",0,1,"beginner"));//3
-        achievements.add(new Achievement("1stunfat",0,1,"beginner"));//4
-        achievements.add(new Achievement("1stvet",0,1,"beginner"));//5
-        achievements.add(new Achievement("1stexercise",0,1,"beginner"));//6
-        achievements.add(new Achievement("1stdrink",0,1,"beginner"));//7
+        achievements.add(new Achievement("sleep8hours5times",0,5,"beginner"));//0
+        achievements.add(new Achievement("1sthealthy",0,1,"intro"));//1 done
+        achievements.add(new Achievement("1stunfat",0,1,"intro"));//2 done
+        achievements.add(new Achievement("1stdrink",0,1,"intro"));//3 TabWater done
+        achievements.add(new Achievement("1stpro",0,1,"intro"));//4 done
+        achievements.add(new Achievement("1stexercise",0,1,"intro"));//5 done
+        achievements.add(new Achievement("carb125FiveTime",0,5,"beginner"));//6 TabFood done
+        achievements.add(new Achievement("waterInDay",0,1,"beginner"));//7 TabWater done
+
 
         //if Load from Login Activity
         if(bundle != null){
@@ -384,6 +385,7 @@ public class NewHome extends Activity
             if ((day != -1) && (day != calendar.get(Calendar.DAY_OF_MONTH))){
                 Log.e("Day and Calendar", day+ " " +calendar.get(Calendar.DAY_OF_MONTH));
                 tmpData.setNewDay(day);
+                CheckAchievementsIfEndDay(tmpData,day);
             }
             jArray = jsonObject.optJSONArray("foodRecentIndex");
             for(int i = 0;i<jArray.length();i++){
@@ -407,7 +409,18 @@ public class NewHome extends Activity
         return tmpData;
     }
 
+    private void CheckAchievementsIfEndDay(DataKeeper data,int day) {
+        int fat = 0;
+        for(int i = 0; i < data.foodOnDay.get(day).size(); i++){
+            fat = fat + data.foodOnDay.get(day).get(i).getFat();
+            Log.e("Fat Total","" + fat);
+        }
+        if(achievements.get(2).addValue() && fat*4 < 0.3*data.caloriesNeedPerDay()){
+            showToast("\"FIRST UN-FAT\" Achievement Unlocked");
+        }
 
+
+    }
 
 
     @Override

@@ -257,7 +257,7 @@ public class TabActivity extends Fragment {
                         data.addCaloriesBurned(Math.round(cal));//need to add formula
                         data.activityRecentIndex = recentIndex;
 
-                        ((NewHome) getActivity()).setData(data);
+                        ((NewHome) getActivity()).setData(CheckAchievements(data));
                         showToast("You " + activity.getName() + " for " + minute + " minute " + Math.round(cal) + " Cal.");
                         dialog.dismiss();
                     }
@@ -296,6 +296,16 @@ public class TabActivity extends Fragment {
         });
         return view;
     }
+
+    private DataKeeper CheckAchievements(DataKeeper data) {
+        DataKeeper tmpData = data;
+        if(((NewHome)getActivity()).achievements.get(5).isActive() && ((NewHome)getActivity()).achievements.get(5).addValue()){
+            showToast("\"FIRST EXERCISE \" Achievement Unlocked");
+        }
+
+        return tmpData;
+    }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

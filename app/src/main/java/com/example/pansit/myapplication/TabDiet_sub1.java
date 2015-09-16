@@ -53,15 +53,44 @@ public class TabDiet_sub1 extends Fragment {
         imageButtons.add(no_coffeeeButton);
         imageButtons.add(bananaButon);
 
-        for(int i = 0;i<imageButtons.size();i++){//7 achievements
-            if(!achievements.get(i).isDone()){//UnDone code
-                imageButtons.get(i).setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
-            }
-            else{//Done code
+        for(int i = 0;i<5;i++){//7 achievements
+            if(achievements.get(i).isDone()){//Done code
                 imageButtons.get(i).setBackgroundColor(Color.rgb(255, 165, 0));
             }
+
         }
-        imageButtons.get(0).setOnClickListener(new View.OnClickListener() {
+
+        sleepbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showcouserdialog("Sleep Time", "sleep more than 6 hours.", context);
+
+            }
+        });
+
+        time_sleepButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showcouserdialog("First Healthy", "-3 meal in a day\n-calories not over the limit", context);
+
+                //howcouserdialog("First Unfat", "-don't eat fat more than 30% of calories intake", context);
+
+
+            }
+        });
+
+        apple_greenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //showcouserdialog("First Drink", "-first time drink", context);
+                showcouserdialog("First Unfat", "-don't eat fat more than 30% of calories intake", context);
+
+            }
+        });
+
+        waterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -70,51 +99,24 @@ public class TabDiet_sub1 extends Fragment {
             }
         });
 
-        imageButtons.get(1).setOnClickListener(new View.OnClickListener() {
+        no_coffeeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                showcouserdialog("Carbohydrate Comtrol I", "-control carbohydrate 125g per day 5 times", context);
+                showcouserdialog("First Protein", "-eat protein more than xxx g in a day", context);
 
             }
         });
 
-        imageButtons.get(2).setOnClickListener(new View.OnClickListener() {
+        bananaButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                showcouserdialog("Sleep Time", "-sleep more than 8 hour 5 day", context);
+                showcouserdialog("First Exercise", "-first time exercise", context);
 
             }
         });
-
-        imageButtons.get(3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                showcouserdialog("First Healthy", "-3 meal in a day/n-calories not over the limit", context);
-
-            }
-        });
-
-        imageButtons.get(4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                showcouserdialog("First Unfat", "-don't eat fat more than 30% of calories intake", context);
-
-            }
-        });
-
-        imageButtons.get(5).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                showcouserdialog("First Vegetarian", "-eat fiber more than xxx g", context);
-
-            }
-        });
-/*
+/* showcouserdialog("Carbohydrate Comtrol I", "-control carbohydrate 125g per day 5 times", context);
         imageButtons.get(6).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,7 +181,7 @@ public class TabDiet_sub1 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String textInput = "Eat before breakfast at 5.30 - 7.00 a.m.\n" +
+                String textInput = "Eat before breakfast at 5.30 - 7.00 a.m.c" +
                         "- Natural  flavor yogurt without mixing = half a cup of fruit in yogurt.\n" +
                         "- 100% fresh milk, not skim recipes. Do not refrigerate = 180-250 ml size\n" +
                         "- honey = 1 tablespoon \n" +

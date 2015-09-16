@@ -57,7 +57,10 @@ public class TabUser extends Fragment {
         final DataKeeper data  = ((NewHome) getActivity()).getData();
 
 
+<<<<<<< HEAD
         //aon
+=======
+>>>>>>> Chuppy-develop
         showAlert(view);
 
 
@@ -583,11 +586,15 @@ public class TabUser extends Fragment {
             graphswitch(data,view);
         }
 
+        //-----------
 
 
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Chuppy-develop
     //---------------showalert
 
     public void showAlert(View view){
@@ -624,4 +631,9 @@ public class TabUser extends Fragment {
         chuppyAlert.show();
 
     }
+<<<<<<< HEAD
 }
+=======
+
+}
+>>>>>>> Chuppy-develop
