@@ -56,8 +56,15 @@ public class TabUser extends Fragment {
 
         final DataKeeper data  = ((NewHome) getActivity()).getData();
 
+        //check first
+       /* boolean checkTrip = true;
+        if(checkTrip == true){
+            showAlert(view);
+            checkTrip = false;
+        }else if (checkTrip == false){
 
-        showAlert(view);
+        } */
+
 
 
         ProgressBar progressBarlvl;
