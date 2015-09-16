@@ -23,11 +23,6 @@
                 android:layout_marginRight="8dp"
                 android:src="@drawable/brown_rice" />
 
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:id="@+id/foodsum_dropdown_dialog"
-                android:spinnerMode="dropdown" />
         </LinearLayout>
 
         <LinearLayout
