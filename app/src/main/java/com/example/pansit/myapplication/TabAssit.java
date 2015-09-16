@@ -164,6 +164,7 @@ public class TabAssit extends Fragment {
         if(checkspeakend == true)
         {
 
+            nametalking_list.add(memberdata.getUser()+" : ");
             pictalking_list.add("1");
             talking_list.add(outputtext);
 
