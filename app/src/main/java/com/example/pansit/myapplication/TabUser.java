@@ -1,8 +1,10 @@
 package com.example.pansit.myapplication;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -55,7 +57,7 @@ public class TabUser extends Fragment {
 
 
 
-
+        showAlert(view);
 
         ProgressBar progressBarlvl;
         progressBarlvl = (ProgressBar) view.findViewById(R.id.lvlprogess);
@@ -579,7 +581,26 @@ public class TabUser extends Fragment {
             graphswitch(data,view);
         }
 
+        //-----------
 
 
     }
+
+    //---------------showalert
+
+    public void showAlert(View view){
+        AlertDialog.Builder chuppyAlert = new AlertDialog.Builder(view.getContext());
+        chuppyAlert.setMessage("You are winner!")
+                .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setTitle("Trip")
+                .create();
+        chuppyAlert.show();
+
+    }
+
 }
