@@ -27,20 +27,6 @@
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/situpButton"
-            android:src="@drawable/sit_up"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/detoxButton"
-            android:src="@drawable/detox2"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/apple_greenButton"
             android:src="@drawable/apple_grean2"
             android:layout_weight="1" />
@@ -56,36 +42,22 @@
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/exerciseButton"
-            android:src="@drawable/exercise"
+            android:id="@+id/drinkWaterbutton"
+            android:src="@drawable/drinkwater"
             android:layout_weight="1" />
 
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/no_coffeeeButton"
-            android:src="@drawable/no_coffee"
+            android:id="@+id/noCoffee"
+            android:src="@drawable/coffee"
             android:layout_weight="1" />
 
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/no_carboButton"
-            android:src="@drawable/no_carbo"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/no_algoholButton"
-            android:src="@drawable/no_algohol"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/brownriceButton"
-            android:src="@drawable/brown_rice"
+            android:id="@+id/bananaButton"
+            android:src="@drawable/banana"
             android:layout_weight="1" />
     </LinearLayout>
 
@@ -96,40 +68,6 @@
         android:layout_weight="2"
         android:layout_marginBottom="25dp">
 
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton11"
-            android:src="@drawable/ic_settings_black_24dp"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton12"
-            android:src="@drawable/ic_settings_black_24dp"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton14"
-            android:src="@drawable/ic_settings_black_24dp"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton15"
-            android:src="@drawable/ic_settings_black_24dp"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton13"
-            android:src="@drawable/ic_settings_black_24dp"
-            android:layout_weight="1" />
     </LinearLayout>
 
     <LinearLayout
@@ -139,39 +77,5 @@
         android:layout_weight="2"
         android:layout_marginBottom="25dp">
 
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton16"
-            android:src="@drawable/ic_settings_black_24dp"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton18"
-            android:src="@drawable/ic_settings_black_24dp"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton19"
-            android:src="@drawable/ic_settings_black_24dp"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton20"
-            android:src="@drawable/ic_settings_black_24dp"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton17"
-            android:src="@drawable/ic_settings_black_24dp"
-            android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>

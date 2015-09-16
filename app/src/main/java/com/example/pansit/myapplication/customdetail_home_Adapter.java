@@ -22,12 +22,15 @@ public class customdetail_home_Adapter extends BaseAdapter {
     private ArrayList<String> textname;
     private ArrayList<String> textnamecolor;
     private ArrayList<String> textnameval;
+    private ArrayList<String> textnamepercen;
 
-    public customdetail_home_Adapter(Activity activity, ArrayList<String> inputtextname, ArrayList<String> inputtextnamecolor, ArrayList<String> inputtextnameval) {
+    public customdetail_home_Adapter(Activity activity, ArrayList<String> inputtextname, ArrayList<String> inputtextnamecolor, ArrayList<String> inputtextnameval
+            , ArrayList<String> inputtextpercen ) {
         this.activity = activity;
         this.textname = inputtextname;
         this.textnamecolor = inputtextnamecolor;
         this.textnameval = inputtextnameval;
+        this.textnamepercen = inputtextpercen;
 
     }
 
@@ -57,13 +60,14 @@ public class customdetail_home_Adapter extends BaseAdapter {
 
         TextView detailtxt = (TextView) convertView.findViewById(R.id.headtext_listview_home);
         TextView valtxt = (TextView) convertView.findViewById(R.id.text1_listview_home);
+        TextView percenttxt = (TextView) convertView.findViewById(R.id.percen_txt_listview_home);
         Button colordetail = (Button) convertView.findViewById(R.id.btn1_listview_home);
 
 
         final String  textdetail = textname.get(position);
         final String  textval = textnameval.get(position);
         final String  textcolor = textnamecolor.get(position);
-
+        final String  textpercen = textnamepercen.get(position);
         // thumbnail image
         colordetail.setBackgroundColor(Color.parseColor(textcolor));
 
@@ -73,7 +77,7 @@ public class customdetail_home_Adapter extends BaseAdapter {
         // valtxt
         valtxt.setText(textval);
 
-
+        percenttxt.setText(textpercen);
 
         return convertView;
     }
