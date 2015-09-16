@@ -78,13 +78,13 @@ public class NewHome extends Activity
 
         //initialize Achievements
         achievements.add(new Achievement("sleep8hours5times",0,5,"beginner"));//0
-        achievements.add(new Achievement("1sthealthy",0,1,"beginner"));//1
-        achievements.add(new Achievement("1stunfat",0,1,"beginner"));//2
-        achievements.add(new Achievement("1stdrink",0,1,"beginner"));//3 TabWater
-        achievements.add(new Achievement("1stvet",0,1,"beginner"));//4
-        achievements.add(new Achievement("1stexercise",0,1,"beginner"));//5
-        achievements.add(new Achievement("carb125FiveTime",0,5,"beginner"));//6 TabFood
-        achievements.add(new Achievement("waterInDay",0,1,"beginner"));//7 TabWater
+        achievements.add(new Achievement("1sthealthy",0,1,"intro"));//1 done
+        achievements.add(new Achievement("1stunfat",0,1,"intro"));//2 done
+        achievements.add(new Achievement("1stdrink",0,1,"intro"));//3 TabWater done
+        achievements.add(new Achievement("1stpro",0,1,"intro"));//4 done
+        achievements.add(new Achievement("1stexercise",0,1,"intro"));//5 done
+        achievements.add(new Achievement("carb125FiveTime",0,5,"beginner"));//6 TabFood done
+        achievements.add(new Achievement("waterInDay",0,1,"beginner"));//7 TabWater done
 
 
         //if Load from Login Activity
