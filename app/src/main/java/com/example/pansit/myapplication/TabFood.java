@@ -388,6 +388,20 @@ public class TabFood extends Fragment    {
             if (((NewHome) getActivity()).achievements.get(1).isDone())
                 showToast("\"FIRST HEALTHY \" Achieved");
         }
+        if(((NewHome) getActivity()).achievements.get(4).isActive()){
+            int protein = 0;
+            ArrayList<Food> foods =  data.getTodayFood();
+            for(int i = 0;i<foods.size();i++){
+                protein = protein + foods.get(i).getProtein();
+            }
+            if(protein > 100){
+                ((NewHome) getActivity()).achievements.get(4).addValue();
+                if (((NewHome) getActivity()).achievements.get(4).isDone())
+                    showToast("\"FIRST PROTEIN \" Achieved");
+            }
+        }
+
+
         return data;
     }
 

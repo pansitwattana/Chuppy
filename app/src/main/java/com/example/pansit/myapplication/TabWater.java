@@ -43,7 +43,7 @@ public class TabWater extends Fragment {
         View view = localInflater.inflate(R.layout.tab_water, container, false);
         //View view = inflater.inflate(R.layout.tab_water,container,false);
 
-        cupsize = new String[] {"200" , "400" , "600"};
+        cupsize = new String[] {"100","150","250" , "600" , "400"};
         drinkButton = (Button)view.findViewById(R.id.drinkButton);
         waterPerDay = (TextView)view.findViewById(R.id.waterPerDayTxt);
         statusTxt = (TextView)view.findViewById(R.id.statusTxt);
@@ -108,6 +108,9 @@ public class TabWater extends Fragment {
                 confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if(((NewHome)getActivity()).achievements.get(3).isActive() && ((NewHome)getActivity()).achievements.get(3).addValue()){
+                            showToast("\"FIRST DRINK WATER\" Achievement Unlocked");
+                        }
                         data.addWaterConsumed(count * Integer.parseInt(cupsize[itemPosition]));
                         if(data.waterNeedPerDay() >= 0) {
                             waterPerDay.setText(data.getWaterConsumed() + "/" + data.getWaterPerDay());
@@ -121,7 +124,13 @@ public class TabWater extends Fragment {
                             waterPerDay.setText(data.getWaterConsumed() + "/" + data.getWaterPerDay());
                         }
                         ((NewHome) getActivity()).setData(data);
-                        showToast("You drink water " + cupsize[itemPosition] + "ml. x" + count);
+                        if(count == 1){
+                            showToast("You drink water " + cupsize[itemPosition] + "ml.");
+                        }
+                        else{
+                            showToast("You drink water " + cupsize[itemPosition] + "ml. x" + count);
+                        }
+
                         dialog.dismiss();
                     }
                 });
@@ -191,8 +200,11 @@ public class TabWater extends Fragment {
     }
     private class ImagePagerAdapter extends PagerAdapter {
         private int[] mImages = new int[] {
-                R.drawable.glass200,
-                R.drawable.food_noodles,
+                R.drawable.cone,
+                R.drawable.glass150,
+                R.drawable.glass250,
+                R.drawable.bottle600,
+                R.drawable.freesizeglass
         };
 
         @Override
@@ -230,7 +242,7 @@ public class TabWater extends Fragment {
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            count=0;
+            count=1;
             multiplier.setText("");
             ((ViewPager) container).removeView((ImageView) object);
         }
