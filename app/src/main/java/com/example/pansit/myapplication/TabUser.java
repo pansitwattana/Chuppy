@@ -32,7 +32,7 @@ import java.util.Random;
 public class TabUser extends Fragment {
 
 
-    TextView calBurnTxt,waterGetTxt,calGetToday,calMaxToday,calBurnMax,waterMaxTxt,calSlash,calUnit,graphtext;
+    TextView calBurnTxt,waterGetTxt,calGetToday,calMaxToday,calBurnMax,waterMaxTxt,calSlash,calUnit,graphtext, lvltext;
     ImageView btn_arrowback,btn_arrownext;
 
     //Button waterButton;
@@ -62,10 +62,13 @@ public class TabUser extends Fragment {
 
 
 
+        lvltext = (TextView) view.findViewById(R.id.lvltext);
+        lvltext.setText(""+data.getlvl());
+
         ProgressBar progressBarlvl;
         progressBarlvl = (ProgressBar) view.findViewById(R.id.lvlprogess);
         progressBarlvl.setMax(100);
-        progressBarlvl.setProgress(10);
+        progressBarlvl.setProgress(data.getLvlexp());
 
 
 
