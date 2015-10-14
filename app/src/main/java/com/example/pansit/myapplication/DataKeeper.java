@@ -25,6 +25,8 @@ public class DataKeeper implements Serializable{
     private int caloriesConsumed;
     private int waterConsumed;
     private int caloriesBurned;
+    private int lvl=1;
+    private int lvlexp=0;
     public boolean isCarbCheck = false;
 
     public ArrayList<Food> breakfastFood = new ArrayList<Food>();
@@ -321,6 +323,42 @@ public class DataKeeper implements Serializable{
         }
 
         return false;
+    }
+
+
+    public int getlvl()
+    {
+        return lvl;
+    }
+
+    private   void  lvlup()
+    {
+        // show toast
+        lvl++;
+    }
+    public  void  addexp(int exp)
+    {
+        lvlexp+=exp;
+
+        if(lvlexp>=100)
+        {
+            lvlexp-=100;
+            lvlup();
+        }
+    }
+    public  int getLvlexp()
+    {
+        return  lvlexp;
+    }
+
+    public  void setlvl(int val)
+    {
+        lvl = val;
+    }
+
+    public  void setLvlexp(int val)
+    {
+        lvlexp = val;
     }
 
 }

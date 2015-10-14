@@ -172,6 +172,8 @@ public class NewHome extends Activity
         sPEditor.putString("ACTIVITYLIST", activityListJson);
         Calendar calendar = Calendar.getInstance();
         sPEditor.putInt("DAY", calendar.get(Calendar.DAY_OF_MONTH));
+        sPEditor.putInt("lvl", data.getlvl());
+        sPEditor.putInt("lvlexp", data.getLvlexp());
         sPEditor.commit();
 
 
@@ -275,6 +277,9 @@ public class NewHome extends Activity
             tmpData.setCaloriesConsumed(jsonObject.optInt("caloriesConsumed", -1));
             tmpData.setCaloriesBurned(jsonObject.optInt("caloriesBurned", -1));
             tmpData.setWaterConsumed(jsonObject.optInt("waterConsumed", -1));
+            tmpData.setlvl(jsonObject.optInt("lvl", -1));
+            tmpData.setLvlexp(jsonObject.optInt("lvlexp", -1));
+
             JSONArray jArray = jsonObject.optJSONArray("nightFood");
             for(int i = 0; i < jArray.length();i++){
                 JSONObject json_data = jArray.getJSONObject(i);
