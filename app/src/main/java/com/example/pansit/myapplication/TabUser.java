@@ -32,7 +32,7 @@ import java.util.Random;
 public class TabUser extends Fragment {
 
 
-    TextView calBurnTxt,waterGetTxt,calGetToday,calMaxToday,calBurnMax,waterMaxTxt,calSlash,calUnit,graphtext;
+    TextView calBurnTxt,waterGetTxt,calGetToday,calMaxToday,calBurnMax,waterMaxTxt,calSlash,calUnit,graphtext, lvltext;
     ImageView btn_arrowback,btn_arrownext;
 
     //Button waterButton;
@@ -57,13 +57,18 @@ public class TabUser extends Fragment {
         final DataKeeper data  = ((NewHome) getActivity()).getData();
 
 
-        showAlert(view);
 
+
+
+
+
+        lvltext = (TextView) view.findViewById(R.id.lvltext);
+        lvltext.setText(""+data.getlvl());
 
         ProgressBar progressBarlvl;
         progressBarlvl = (ProgressBar) view.findViewById(R.id.lvlprogess);
         progressBarlvl.setMax(100);
-        progressBarlvl.setProgress(10);
+        progressBarlvl.setProgress(data.getLvlexp());
 
 
 
@@ -320,16 +325,16 @@ public class TabUser extends Fragment {
             // graph1
 
 
-            graphtext.setText("Calorie today");
+            graphtext.setText("Calorie Eated Today");
 
             pg.setDuration(2000);//default if unspecified is 300 ms
 
             int percentval01 = 0;
             int percentval02 = 0;
 
-            percentval01 =  caleat*100/(calperday+caleat);
+            percentval01 =  caleat*100/(calperday);
 
-            percentval02 = calperday*100/(calperday+caleat);
+            percentval02 = 100;
 
 
             if(calperday >= caleat)
@@ -365,7 +370,7 @@ public class TabUser extends Fragment {
 
 
             // list view
-            detailname.add("Calorie Today : ");
+            detailname.add("Calorie Eated : ");
             valname.add(data.getCaloriesConsumed() + " cal");
             colorname.add(textcolor2);
             percentext.add(percentval01+"%");
@@ -384,13 +389,13 @@ public class TabUser extends Fragment {
         {
 
             // graph2
-            graphtext.setText("Calorie's Burn today");
+            graphtext.setText("Calorie Burned Today");
 
             textcolor1 = "#ff262626";
             textcolor2 = "#ff16b405";
 
             int percentval01 = 0;
-            int percentval02 = 0;
+            int percentval02 = 100;
 
 
 
@@ -401,11 +406,16 @@ public class TabUser extends Fragment {
             calburn = data.getCaloriesBurned();
             caleat = data.getCaloriesConsumed();
 
-            if(calburn+caleat!=0)
+            if(calburn!=0)
             {
 
-                percentval01 =  calburn*100/(calburn+caleat);
-                percentval02 = caleat*100/(calburn+caleat);
+                percentval01 =  calburn*100/(caleat);
+
+            }
+            else
+            {
+                percentval01 =  0;
+
             }
 
 
@@ -452,7 +462,7 @@ public class TabUser extends Fragment {
 
 
             // list view
-            detailname.add("Calorie Burn : ");
+            detailname.add("Calorie Burned : ");
             valname.add(data.getCaloriesBurned() + " cal");
             colorname.add(textcolor2);
             percentext.add(percentval01+"%");
@@ -587,41 +597,7 @@ public class TabUser extends Fragment {
 
     }
 
-    //---------------showalert
 
-    public void showAlert(View view){
-        String Trip = "..";
-        Random randTrip = new Random();
-        int number = randTrip.nextInt(5)+1;
-        switch (number){
-            case 1: Trip = "Do not eat more than one teaspoon of sodium.";
-                break;
-            case 2: Trip = "Instant noodles are extremely harmful to the kidneys.";
-                break;
-            case 3: Trip = "Eating salty risk of heart disease";
-                break;
-            case 4: Trip ="Oat\n"+"Eating oatmeal regularly can reduce Cholesterol\n"+
-                    "Reduce constipation,the absorption of fat and sugar";
-                break;
-            case 5: Trip = "Easy Trick to lose weight\n"+
-                    "1.Drink water about 12/16 glasses/day\n"+"2.Cheat meal less than 2 potion\n"+
-                    "3Avoid energy drinks ex.cola";
-                break;
-        }
 
-        AlertDialog.Builder chuppyAlert = new AlertDialog.Builder(view.getContext());
-        chuppyAlert.setMessage(Trip)
-                .setPositiveButton("Close", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .setTitle("Trip")
-                .setIcon(R.drawable.logo)
-                .create();
-        chuppyAlert.show();
-
-    }
 
 }

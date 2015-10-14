@@ -2,11 +2,13 @@ package com.example.pansit.myapplication;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -29,6 +31,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 import java.util.Stack;
 
 
@@ -172,6 +175,8 @@ public class NewHome extends Activity
         sPEditor.putString("ACTIVITYLIST", activityListJson);
         Calendar calendar = Calendar.getInstance();
         sPEditor.putInt("DAY", calendar.get(Calendar.DAY_OF_MONTH));
+        sPEditor.putInt("lvl", data.getlvl());
+        sPEditor.putInt("lvlexp", data.getLvlexp());
         sPEditor.commit();
 
 
@@ -275,6 +280,9 @@ public class NewHome extends Activity
             tmpData.setCaloriesConsumed(jsonObject.optInt("caloriesConsumed", -1));
             tmpData.setCaloriesBurned(jsonObject.optInt("caloriesBurned", -1));
             tmpData.setWaterConsumed(jsonObject.optInt("waterConsumed", -1));
+            tmpData.setlvl(jsonObject.optInt("lvl", -1));
+            tmpData.setLvlexp(jsonObject.optInt("lvlexp", -1));
+
             JSONArray jArray = jsonObject.optJSONArray("nightFood");
             for(int i = 0; i < jArray.length();i++){
                 JSONObject json_data = jArray.getJSONObject(i);
@@ -386,6 +394,7 @@ public class NewHome extends Activity
                 Log.e("Day and Calendar", day+ " " +calendar.get(Calendar.DAY_OF_MONTH));
                 tmpData.setNewDay(day);
                 CheckAchievementsIfEndDay(tmpData,day);
+                showAlert();
             }
             jArray = jsonObject.optJSONArray("foodRecentIndex");
             for(int i = 0;i<jArray.length();i++){
@@ -410,15 +419,17 @@ public class NewHome extends Activity
     }
 
     private void CheckAchievementsIfEndDay(DataKeeper data,int day) {
-        int fat = 0;
-        for(int i = 0; i < data.foodOnDay.get(day).size(); i++){
-            fat = fat + data.foodOnDay.get(day).get(i).getFat();
-            Log.e("Fat Total","" + fat);
-        }
-        if(achievements.get(2).addValue() && fat*4 < 0.3*data.caloriesNeedPerDay()){
-            showToast("\"FIRST UN-FAT\" Achievement Unlocked");
-        }
 
+        if(achievements.get(2).isActive()) {
+            int fat = 0;
+            for (int i = 0; i < data.foodOnDay.get(day).size(); i++) {
+                fat = fat + data.foodOnDay.get(day).get(i).getFat();
+                Log.e("Fat Total", "" + fat);
+            }
+            if (achievements.get(2).addValue() && fat * 4 < 0.3 * data.caloriesNeedPerDay()) {
+                showToast("\"FIRST UN-FAT\" Achievement Unlocked");
+            }
+        }
 
     }
 
@@ -638,6 +649,42 @@ public class NewHome extends Activity
     }
 
 
+    //---------------showalert
+
+    public void showAlert(){
+        String Trip = "..";
+        Random randTrip = new Random();
+        int number = randTrip.nextInt(5)+1;
+        switch (number){
+            case 1: Trip = "Do not eat more than one teaspoon of sodium.";
+                break;
+            case 2: Trip = "Instant noodles are extremely harmful to the kidneys.";
+                break;
+            case 3: Trip = "Eating salty risk of heart disease";
+                break;
+            case 4: Trip ="Oat\n"+"Eating oatmeal regularly can reduce Cholesterol\n"+
+                    "Reduce constipation,the absorption of fat and sugar";
+                break;
+            case 5: Trip = "Easy Trick to lose weight\n"+
+                    "1.Drink water about 12/16 glasses/day\n"+"2.Cheat meal less than 2 potion\n"+
+                    "3Avoid energy drinks ex.cola";
+                break;
+        }
+
+        AlertDialog.Builder chuppyAlert = new AlertDialog.Builder(this);
+        chuppyAlert.setMessage(Trip)
+                .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setTitle("Trip")
+                .setIcon(R.drawable.logo)
+                .create();
+        chuppyAlert.show();
+
+    }
 }
 
 

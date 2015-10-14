@@ -48,12 +48,12 @@ public class TabDiet_sub1 extends Fragment {
         // no_coffeeeButton,no_carboButton,no_algoholButton,brownriceButton
         imageButtons.add(sleepbutton);
         imageButtons.add(time_sleepButton);
-        imageButtons.add(waterButton);
         imageButtons.add(apple_greenButton);
+        imageButtons.add(waterButton);
         imageButtons.add(no_coffeeeButton);
         imageButtons.add(bananaButon);
 
-        for(int i = 0;i<5;i++){//7 achievements
+        for(int i = 0;i<=5;i++){//7 achievements
             if(achievements.get(i).isDone()){//Done code
                 imageButtons.get(i).setBackgroundColor(Color.rgb(255, 165, 0));
             }
