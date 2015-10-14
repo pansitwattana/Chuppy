@@ -42,6 +42,7 @@ public class TabAssit extends Fragment {
     ArrayList<String> talking_list = new ArrayList<String>();
     ArrayList<String> nametalking_list = new ArrayList<String>();
     ArrayList<String> pictalking_list = new ArrayList<String>();  // 0 chuppy 1 me
+    ArrayList<String>  checktalking = new ArrayList<String>();; // 0-- chuppy talking 1--member talking
 
     ArrayList<Food> food_list = new ArrayList<Food>();
     DataKeeper memberdata ;
@@ -50,6 +51,7 @@ public class TabAssit extends Fragment {
 
 
     boolean checkspeakend = false;
+
 
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private final int RESULT_OK = -1;
@@ -83,10 +85,10 @@ public class TabAssit extends Fragment {
         nametalking_list.add("Chuppy :");
         pictalking_list.add("0");
         talking_list.add("Talk to Chuppy by Click Microphone Button ");
+        checktalking.add("0");
 
 
-
-        customtalking_detail_home_Adapter talkingadapter = new customtalking_detail_home_Adapter(getActivity(),talking_list,nametalking_list,pictalking_list);
+        customtalking_detail_home_Adapter talkingadapter = new customtalking_detail_home_Adapter(getActivity(),talking_list,nametalking_list,pictalking_list,checktalking);
         talkinglistView.setAdapter(talkingadapter);
 
         talkagainButton.setOnClickListener(new View.OnClickListener() {
@@ -167,6 +169,7 @@ public class TabAssit extends Fragment {
             nametalking_list.add(memberdata.getUser()+" : ");
             pictalking_list.add("1");
             talking_list.add(outputtext);
+            checktalking.add("1");
 
             outputtext+=" "+conditext;
             outputtext+="     ";
@@ -373,6 +376,7 @@ public class TabAssit extends Fragment {
                             nametalking_list.add("Chuppy : ");
                             pictalking_list.add("0");
                             talking_list.add(" Ok i insert " + outputtext + " mml. of water");
+                            checktalking.add("0");
 
                             dialog.dismiss();
                         }});
@@ -391,6 +395,7 @@ public class TabAssit extends Fragment {
                     nametalking_list.add("Chuppy : ");
                     pictalking_list.add("0");
                     talking_list.add("i don't know how many water are you drink ?");
+                    checktalking.add("0");
                 }
 
             }
@@ -399,16 +404,17 @@ public class TabAssit extends Fragment {
                 nametalking_list.add("Chuppy : ");
                 pictalking_list.add("0");
                 talking_list.add("I don't know what are you talking about ");
-
+                checktalking.add("0");
 
             }
 
-            customtalking_detail_home_Adapter talkingadapter = new customtalking_detail_home_Adapter(getActivity(),talking_list,nametalking_list,pictalking_list);
+            customtalking_detail_home_Adapter talkingadapter = new customtalking_detail_home_Adapter(getActivity(),talking_list,nametalking_list,pictalking_list,checktalking);
             talkinglistView.setAdapter(talkingadapter);
 
 
             talking_list = new ArrayList<String>();
             pictalking_list = new ArrayList<String>();
+            nametalking_list = new ArrayList<String>();
             nametalking_list = new ArrayList<String>();
 
             checkspeakend = false;

@@ -48,8 +48,8 @@ public class TabDiet_sub1 extends Fragment {
         // no_coffeeeButton,no_carboButton,no_algoholButton,brownriceButton
         imageButtons.add(sleepbutton);
         imageButtons.add(time_sleepButton);
-        imageButtons.add(waterButton);
         imageButtons.add(apple_greenButton);
+        imageButtons.add(waterButton);
         imageButtons.add(no_coffeeeButton);
         imageButtons.add(bananaButon);
 

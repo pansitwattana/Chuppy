@@ -322,16 +322,16 @@ public class TabUser extends Fragment {
             // graph1
 
 
-            graphtext.setText("Calorie today");
+            graphtext.setText("Calorie Eated Today");
 
             pg.setDuration(2000);//default if unspecified is 300 ms
 
             int percentval01 = 0;
             int percentval02 = 0;
 
-            percentval01 =  caleat*100/(calperday+caleat);
+            percentval01 =  caleat*100/(calperday);
 
-            percentval02 = calperday*100/(calperday+caleat);
+            percentval02 = 100;
 
 
             if(calperday >= caleat)
@@ -367,7 +367,7 @@ public class TabUser extends Fragment {
 
 
             // list view
-            detailname.add("Calorie Today : ");
+            detailname.add("Calorie Eated : ");
             valname.add(data.getCaloriesConsumed() + " cal");
             colorname.add(textcolor2);
             percentext.add(percentval01+"%");
@@ -386,13 +386,13 @@ public class TabUser extends Fragment {
         {
 
             // graph2
-            graphtext.setText("Calorie's Burn today");
+            graphtext.setText("Calorie Burned Today");
 
             textcolor1 = "#ff262626";
             textcolor2 = "#ff16b405";
 
             int percentval01 = 0;
-            int percentval02 = 0;
+            int percentval02 = 100;
 
 
 
@@ -403,11 +403,16 @@ public class TabUser extends Fragment {
             calburn = data.getCaloriesBurned();
             caleat = data.getCaloriesConsumed();
 
-            if(calburn+caleat!=0)
+            if(calburn!=0)
             {
 
-                percentval01 =  calburn*100/(calburn+caleat);
-                percentval02 = caleat*100/(calburn+caleat);
+                percentval01 =  calburn*100/(caleat);
+
+            }
+            else
+            {
+                percentval01 =  0;
+
             }
 
 
@@ -454,7 +459,7 @@ public class TabUser extends Fragment {
 
 
             // list view
-            detailname.add("Calorie Burn : ");
+            detailname.add("Calorie Burned : ");
             valname.add(data.getCaloriesBurned() + " cal");
             colorname.add(textcolor2);
             percentext.add(percentval01+"%");
