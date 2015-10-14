@@ -59,7 +59,7 @@ public class TabUser extends Fragment {
 
 
 
-        showAlert(view);
+
 
 
         ProgressBar progressBarlvl;
@@ -595,42 +595,6 @@ public class TabUser extends Fragment {
     }
 
 
-    //---------------showalert
-
-    public void showAlert(View view){
-        String Trip = "..";
-        Random randTrip = new Random();
-        int number = randTrip.nextInt(5)+1;
-        switch (number){
-            case 1: Trip = "Do not eat more than one teaspoon of sodium.";
-                break;
-            case 2: Trip = "Instant noodles are extremely harmful to the kidneys.";
-                break;
-            case 3: Trip = "Eating salty risk of heart disease";
-                break;
-            case 4: Trip ="Oat\n"+"Eating oatmeal regularly can reduce Cholesterol\n"+
-                    "Reduce constipation,the absorption of fat and sugar";
-                break;
-            case 5: Trip = "Easy Trick to lose weight\n"+
-                    "1.Drink water about 12/16 glasses/day\n"+"2.Cheat meal less than 2 potion\n"+
-                    "3Avoid energy drinks ex.cola";
-                break;
-        }
-
-        AlertDialog.Builder chuppyAlert = new AlertDialog.Builder(view.getContext());
-        chuppyAlert.setMessage(Trip)
-                .setPositiveButton("Close", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .setTitle("Trip")
-                .setIcon(R.drawable.logo)
-                .create();
-        chuppyAlert.show();
-
-    }
 
 
 }
