@@ -22,13 +22,14 @@ public class customtalking_detail_home_Adapter extends BaseAdapter {
     private ArrayList<String> textdetail;
     private ArrayList<String> textname;
     private ArrayList<String> textpic;
+    private ArrayList<String> checktalking;
 
-
-    public customtalking_detail_home_Adapter(Activity activity, ArrayList<String> textdetail , ArrayList<String> textname , ArrayList<String> textpic) {
+    public customtalking_detail_home_Adapter(Activity activity, ArrayList<String> textdetail , ArrayList<String> textname , ArrayList<String> textpic,ArrayList<String> checktalking) {
         this.activity = activity;
         this.textdetail = textdetail;
         this.textname = textname;
         this.textpic = textpic;
+        this.checktalking = checktalking;
     }
 
     @Override
@@ -55,17 +56,42 @@ public class customtalking_detail_home_Adapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.detailtalking_of_listview_assit, null);
 
-
+        // chuppy
+        ImageView listview_pic = (ImageView) convertView.findViewById(R.id.pic_talking_assit);
         TextView listview_textname = (TextView) convertView.findViewById(R.id.name_talking_assit);
         TextView listview_textdetail = (TextView) convertView.findViewById(R.id.detail_talking_assit);
-        //ImageView listview_textpic = (ImageView) convertView.findViewById(R.id.pic_talking_assit);
+
+        // member
+        ImageView listview_mpic = (ImageView) convertView.findViewById(R.id.mpic_talking_assis);
+        TextView listview_mtextname = (TextView) convertView.findViewById(R.id.mname_talking_assit);
+        TextView listview_mtextdetail = (TextView) convertView.findViewById(R.id.mdetail_talking_assit);
 
 
         final String name =  textname.get(position);
         final String detail =  textdetail.get(position);
+        final String checktalk = checktalking.get(position);
 
-        listview_textname.setText(name);
-        listview_textdetail.setText(detail);
+        if(checktalk == "0")
+        {
+
+            listview_textname.setText(name);
+            listview_textdetail.setText(detail);
+            listview_pic.setImageResource(R.drawable.logo);
+
+            listview_mtextname.setText("");
+            listview_mtextdetail.setText("");
+            listview_mpic.setImageResource(R.drawable.assit_talking_blank);
+        }
+        else
+        {
+            listview_textname.setText("");
+            listview_textdetail.setText("");
+            listview_pic.setImageResource(R.drawable.assit_talking_blank);
+
+            listview_mtextname.setText(name);
+            listview_mtextdetail.setText(detail);
+            listview_mpic.setImageResource(R.drawable.logo);
+        }
 
         return convertView;
     }
