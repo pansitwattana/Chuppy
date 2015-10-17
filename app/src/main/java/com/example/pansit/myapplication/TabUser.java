@@ -32,7 +32,7 @@ import java.util.Random;
 public class TabUser extends Fragment {
 
 
-    TextView calBurnTxt,waterGetTxt,calGetToday,calMaxToday,calBurnMax,waterMaxTxt,calSlash,calUnit,graphtext;
+    TextView calBurnTxt,waterGetTxt,calGetToday,calMaxToday,calBurnMax,waterMaxTxt,calSlash,calUnit,graphtext, lvltext;
     ImageView btn_arrowback,btn_arrownext;
 
     //Button waterButton;
@@ -59,56 +59,22 @@ public class TabUser extends Fragment {
 
 
 
-        showAlert(view);
 
+
+
+        lvltext = (TextView) view.findViewById(R.id.lvltext);
+        lvltext.setText(""+data.getlvl());
 
         ProgressBar progressBarlvl;
         progressBarlvl = (ProgressBar) view.findViewById(R.id.lvlprogess);
         progressBarlvl.setMax(100);
-        progressBarlvl.setProgress(10);
+        progressBarlvl.setProgress(data.getLvlexp());
 
 
 
 
 
         // setgraph
-
-
-
-        graphtext = (TextView)view.findViewById(R.id.txtgraph_home);
-        btn_arrowback = (ImageView) view.findViewById(R.id.backgraph_home);
-        btn_arrownext = (ImageView) view.findViewById(R.id.nextgraph_home);
-
-        graphtext.setText("Calorie today");
-
-        graphswitch(data, view);
-
-        btn_arrowback.setOnClickListener(new View.OnClickListener() {
-                                             @Override
-                                             public void onClick(View v) {
-                                                 graphnow--;
-                                                 graphswitch(data, view);
-                                             }
-                                         }
-
-        );
-
-        btn_arrownext.setOnClickListener(new View.OnClickListener() {
-                                             @Override
-                                             public void onClick(View v) {
-                                                 graphnow++;
-                                                 graphswitch( data, view);}}
-
-        );
-
-
-
-
-
-
-
-
-
 
 
         foodButton = (LinearLayout)view.findViewById(R.id.foodButton);
@@ -174,10 +140,15 @@ public class TabUser extends Fragment {
 
         );
         */
+
+
+
+
+
         foodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((NewHome)getActivity()).changeFragment(1);
+                ((NewHome) getActivity()).changeFragment(1);
 
             }
         });
@@ -185,25 +156,183 @@ public class TabUser extends Fragment {
         activityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((NewHome)getActivity()).changeFragment(3);
+                ((NewHome) getActivity()).changeFragment(3);
             }
         });
 
         reportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((NewHome)getActivity()).changeFragment(5);
+                ((NewHome) getActivity()).changeFragment(5);
             }
         });
 
         assistanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((NewHome)getActivity()).changeFragment(6);
+                ((NewHome) getActivity()).changeFragment(6);
             }
         });
 
 
+        final PieGraph pg = (PieGraph)view.findViewById(R.id.graph);
+        pg.removeSlices();
+
+        ListView detail_listview = (ListView)view.findViewById(R.id.listView_detail_home);
+        detail_listview.setAdapter(null);
+
+        TextView graph1_percen = (TextView)view.findViewById(R.id.graph1_score);
+        TextView graph2_percen = (TextView)view.findViewById(R.id.graph2_score);
+
+        ArrayList<String> detailname = new ArrayList<String>();
+        ArrayList<String> valname = new ArrayList<String>();
+        ArrayList<String> colorname = new ArrayList<String>();
+        ArrayList<String> percentext = new ArrayList<String>();
+        customdetail_home_Adapter adapter;
+
+
+        int calperday = data.getCaloriesPerDay();
+        int caleat = data.getCaloriesConsumed();
+        int calburn = data.getCaloriesBurned();
+
+
+        int percentval01 = 0;
+        int percentval02 = 0;
+
+
+        // graph1
+        String textcolor1 = "#ff262626";
+        String textcolor2 = "#fffd8409";
+
+
+        pg.setDuration(2000);//default if unspecified is 300 ms
+
+
+
+        percentval01 =  caleat*100/(calperday);
+
+
+
+        if(calperday >= caleat)
+        {
+            caleat = (caleat *100)/calperday;
+            calperday = 100;
+        }
+        else
+        {
+            int calmore = caleat%calperday;
+            caleat =  (calmore *100)/calperday;
+            calperday = 100;
+
+            textcolor1 = "#fffd8409";
+            textcolor2 = "#FFB01F1B";
+        }
+
+        PieSlice slice = new PieSlice();
+        slice.setColor(Color.parseColor(textcolor1));
+        slice.setValue(calperday - caleat);
+        pg.addSlice(slice);
+
+
+        slice = new PieSlice();
+        slice.setColor(Color.parseColor(textcolor2));
+        slice.setValue(caleat);
+        pg.addSlice(slice);
+
+
+
+        pg.setInnerCircleRatio(200);
+        pg.setPadding(5);
+
+
+
+
+        // graph2
+
+        String textcolor3 = "#ff262626";
+        String textcolor4 = "#ff16b405";
+
+
+
+
+        PieGraph pg2 = (PieGraph)view.findViewById(R.id.graph2);;
+        // pg2.setDuration(2000);//default if unspecified is 300 ms
+
+        calburn = data.getCaloriesBurned();
+        caleat = data.getCaloriesConsumed();
+
+        if(calburn!=0)
+        {
+
+            percentval02 =  calburn*100/(caleat);
+
+        }
+        else
+        {
+            percentval02 =  0;
+
+        }
+
+
+
+        if(caleat >= calburn)
+        {
+            if(caleat != 0) {
+                calburn = (calburn * 100) / caleat;
+            }
+            caleat = 100;
+        }
+        else
+        {
+            int calmore = calburn - caleat;
+            calburn =  (calmore *100)/caleat;
+            caleat = 100;
+
+            textcolor3 = "#ff16b405";
+            textcolor4 = "#ff438424";
+        }
+
+
+
+
+        PieSlice slice2 = new PieSlice();
+        slice2.setColor(Color.parseColor(textcolor3));
+        slice2.setValue(caleat - calburn);
+        slice2.setTitle("CAL ALL");
+        //  slice2.setGoalValue(data.getCaloriesPerDay() - data.getCaloriesConsumed());
+        pg2.addSlice(slice2);
+
+
+        slice2 = new PieSlice();
+        slice2.setColor(Color.parseColor(textcolor4));
+        slice2.setValue(calburn);
+        // slice2.setGoalValue(calburn);
+        pg2.addSlice(slice2);
+        // pg2.animateToGoalValues();
+
+        pg2.setInnerCircleRatio(200);
+        pg2.setPadding(5);
+
+
+
+        // list view
+        detailname.add("Calorie Request : ");
+        valname.add(data.getCaloriesConsumed() + " / " + data.getCaloriesPerDay() + " cal");
+        colorname.add(textcolor2);
+        percentext.add(percentval01+"%");
+
+        detailname.add("Calorie Burn : ");
+        valname.add(data.getCaloriesBurned() +" / "+data.getCaloriesConsumed() + " cal");
+        colorname.add(textcolor4);
+        percentext.add(percentval02+"%");
+
+        graph1_percen.setText(percentval01 + "%");
+        graph1_percen.setTextColor(Color.parseColor(textcolor2));
+        graph2_percen.setText(percentval02 + "%");
+        graph2_percen.setTextColor(Color.parseColor(textcolor4));
+
+        adapter = new customdetail_home_Adapter(getActivity(), detailname,colorname,valname);
+        detail_listview.setAdapter(adapter);
 
 
         return view;
@@ -296,184 +425,10 @@ public class TabUser extends Fragment {
 
     public void graphswitch(DataKeeper data ,View view)
     {
-        final PieGraph pg = (PieGraph)view.findViewById(R.id.graph);
-        pg.removeSlices();
-
-        ListView detail_listview = (ListView)view.findViewById(R.id.listView_detail_home);
-        detail_listview.setAdapter(null);
-
-        ArrayList<String> detailname = new ArrayList<String>();
-        ArrayList<String> valname = new ArrayList<String>();
-        ArrayList<String> colorname = new ArrayList<String>();
-        ArrayList<String> percentext = new ArrayList<String>();
-        customdetail_home_Adapter adapter;
-
-
-        int calperday = data.getCaloriesPerDay();
-        int caleat = data.getCaloriesConsumed();
-        int calburn = data.getCaloriesBurned();
-
-
-        String textcolor1 = "#ff262626";
-        String textcolor2 = "#fffd8409";
-
-        if( graphnow == 1)
-        {
-            // graph1
-
-
-            graphtext.setText("Calorie Eated Today");
-
-            pg.setDuration(2000);//default if unspecified is 300 ms
-
-            int percentval01 = 0;
-            int percentval02 = 0;
-
-            percentval01 =  caleat*100/(calperday);
-
-            percentval02 = 100;
-
-
-            if(calperday >= caleat)
-            {
-                caleat = (caleat *100)/calperday;
-                calperday = 100;
-            }
-            else
-            {
-                int calmore = caleat%calperday;
-                caleat =  (calmore *100)/calperday;
-                calperday = 100;
-
-                textcolor1 = "#fffd8409";
-                textcolor2 = "#FFB01F1B";
-            }
-
-            PieSlice slice = new PieSlice();
-            slice.setColor(Color.parseColor(textcolor1));
-            slice.setValue(calperday - caleat);
-            pg.addSlice(slice);
-
-
-            slice = new PieSlice();
-            slice.setColor(Color.parseColor(textcolor2));
-            slice.setValue(caleat);
-            pg.addSlice(slice);
 
 
 
-            pg.setInnerCircleRatio(200);
-            pg.setPadding(5);
-
-
-            // list view
-            detailname.add("Calorie Eated : ");
-            valname.add(data.getCaloriesConsumed() + " cal");
-            colorname.add(textcolor2);
-            percentext.add(percentval01+"%");
-
-            detailname.add("Calorie Per Day : ");
-            valname.add(data.getCaloriesPerDay()+" cal");
-            colorname.add(textcolor1);
-            percentext.add(percentval02+"%");
-
-            adapter = new customdetail_home_Adapter(getActivity(), detailname,colorname,valname,percentext);
-            detail_listview.setAdapter(adapter);
-
-
-        }
-        else if(graphnow == 2)
-        {
-
-            // graph2
-            graphtext.setText("Calorie Burned Today");
-
-            textcolor1 = "#ff262626";
-            textcolor2 = "#ff16b405";
-
-            int percentval01 = 0;
-            int percentval02 = 100;
-
-
-
-
-            PieGraph pg2 = pg;
-            // pg2.setDuration(2000);//default if unspecified is 300 ms
-
-            calburn = data.getCaloriesBurned();
-            caleat = data.getCaloriesConsumed();
-
-            if(calburn!=0)
-            {
-
-                percentval01 =  calburn*100/(caleat);
-
-            }
-            else
-            {
-                percentval01 =  0;
-
-            }
-
-
-
-            if(caleat >= calburn)
-            {
-                if(caleat != 0) {
-                    calburn = (calburn * 100) / caleat;
-                }
-                caleat = 100;
-            }
-            else
-            {
-                int calmore = calburn - caleat;
-                calburn =  (calmore *100)/caleat;
-                caleat = 100;
-
-                textcolor1 = "#ff16b405";
-                textcolor2 = "#ff438424";
-            }
-
-
-
-
-            PieSlice slice2 = new PieSlice();
-            slice2.setColor(Color.parseColor(textcolor1));
-            slice2.setValue(caleat - calburn);
-            slice2.setTitle("CAL ALL");
-            //  slice2.setGoalValue(data.getCaloriesPerDay() - data.getCaloriesConsumed());
-            pg2.addSlice(slice2);
-
-
-            slice2 = new PieSlice();
-            slice2.setColor(Color.parseColor(textcolor2));
-            slice2.setValue(calburn);
-            // slice2.setGoalValue(calburn);
-            pg2.addSlice(slice2);
-            // pg2.animateToGoalValues();
-
-
-
-            pg2.setInnerCircleRatio(200);
-            pg2.setPadding(5);
-
-
-            // list view
-            detailname.add("Calorie Burned : ");
-            valname.add(data.getCaloriesBurned() + " cal");
-            colorname.add(textcolor2);
-            percentext.add(percentval01+"%");
-
-            detailname.add("Calorie Today : ");
-            valname.add(data.getCaloriesConsumed() + " cal");
-            colorname.add(textcolor1);
-            percentext.add(percentval02+"%");
-
-            adapter = new customdetail_home_Adapter(getActivity(), detailname,colorname,valname,percentext);
-            detail_listview.setAdapter(adapter);
-
-        }
-        else if(graphnow == 3 )
+        /*else if(graphnow == 3 )
         {
             graphtext.setText("Nutrorail today");
 
@@ -589,48 +544,13 @@ public class TabUser extends Fragment {
             graphswitch(data,view);
         }
 
+        */
         //-----------
 
 
     }
 
 
-    //---------------showalert
-
-    public void showAlert(View view){
-        String Trip = "..";
-        Random randTrip = new Random();
-        int number = randTrip.nextInt(5)+1;
-        switch (number){
-            case 1: Trip = "Do not eat more than one teaspoon of sodium.";
-                break;
-            case 2: Trip = "Instant noodles are extremely harmful to the kidneys.";
-                break;
-            case 3: Trip = "Eating salty risk of heart disease";
-                break;
-            case 4: Trip ="Oat\n"+"Eating oatmeal regularly can reduce Cholesterol\n"+
-                    "Reduce constipation,the absorption of fat and sugar";
-                break;
-            case 5: Trip = "Easy Trick to lose weight\n"+
-                    "1.Drink water about 12/16 glasses/day\n"+"2.Cheat meal less than 2 potion\n"+
-                    "3Avoid energy drinks ex.cola";
-                break;
-        }
-
-        AlertDialog.Builder chuppyAlert = new AlertDialog.Builder(view.getContext());
-        chuppyAlert.setMessage(Trip)
-                .setPositiveButton("Close", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .setTitle("Trip")
-                .setIcon(R.drawable.logo)
-                .create();
-        chuppyAlert.show();
-
-    }
 
 
 }

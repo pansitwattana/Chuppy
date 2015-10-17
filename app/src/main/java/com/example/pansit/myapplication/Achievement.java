@@ -20,6 +20,7 @@ public class Achievement {
         this.isDone = false;
     }
     public void done(){
+
         isDone = true;
     }
     public boolean isDone(){

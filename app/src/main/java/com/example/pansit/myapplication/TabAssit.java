@@ -412,10 +412,6 @@ public class TabAssit extends Fragment {
             talkinglistView.setAdapter(talkingadapter);
 
 
-            talking_list = new ArrayList<String>();
-            pictalking_list = new ArrayList<String>();
-            nametalking_list = new ArrayList<String>();
-            nametalking_list = new ArrayList<String>();
 
             checkspeakend = false;
         }

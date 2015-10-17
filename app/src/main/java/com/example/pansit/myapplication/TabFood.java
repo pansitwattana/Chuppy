@@ -381,12 +381,14 @@ public class TabFood extends Fragment    {
         if (((NewHome) getActivity()).achievements.get(6).isActive() && data.checkCarbTodayIfMoreThan(125)) {
             ((NewHome) getActivity()).achievements.get(6).addValue();
             if (((NewHome) getActivity()).achievements.get(6).isDone())
-                showToast("\"CARBON PER DAY 5 TIMES \" Achieved");
+            {   showToast("\"CARBON PER DAY 5 TIMES \" Achieved");
+                data.addexp(30); }
         }
         if(data.getTodayFood().size() >= 3 && data.getCaloriesConsumed() < data.getCaloriesPerDay()){
             ((NewHome) getActivity()).achievements.get(1).addValue();
             if (((NewHome) getActivity()).achievements.get(1).isDone())
-                showToast("\"FIRST HEALTHY \" Achieved");
+            {showToast("\"FIRST HEALTHY \" Achieved");
+            data.addexp(30); }
         }
         if(((NewHome) getActivity()).achievements.get(4).isActive()){
             int protein = 0;
@@ -397,7 +399,10 @@ public class TabFood extends Fragment    {
             if(protein > 100){
                 ((NewHome) getActivity()).achievements.get(4).addValue();
                 if (((NewHome) getActivity()).achievements.get(4).isDone())
-                    showToast("\"FIRST PROTEIN \" Achieved");
+                {  showToast("\"FIRST PROTEIN \" Achieved");
+                    data.addexp(30);
+                }
+
             }
         }
 

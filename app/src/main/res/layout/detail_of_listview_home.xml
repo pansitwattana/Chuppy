@@ -12,8 +12,8 @@
         android:layout_height="wrap_content" >
 
         <Button
-            android:layout_width="45dp"
-            android:layout_height="wrap_content"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:id="@+id/btn1_listview_home"
             android:background="#FF34CB14"
             android:layout_margin="5dp" />
@@ -44,17 +44,6 @@
                 android:text="val1"
                 android:layout_alignTop="@+id/headtext_listview_home"
                 android:layout_alignParentEnd="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="30 %"
-                android:id="@+id/percen_txt_listview_home"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true" />
 
         </RelativeLayout>
     </LinearLayout>

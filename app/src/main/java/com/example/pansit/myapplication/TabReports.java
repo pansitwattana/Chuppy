@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.echo.holographlibrary.Bar;
@@ -32,6 +33,7 @@ public class TabReports extends Fragment {
     final int BarColor = Color.parseColor("#fffb8209");
 
 
+
     DataKeeper data;
     BarGraph barGraph;
 
@@ -42,7 +44,7 @@ public class TabReports extends Fragment {
         data =  ((NewHome)getActivity()).getData();
 
         Spinner dropdown = (Spinner) view.findViewById(R.id.spinnerReport);
-        String[] items = new String[]{"Calories You Eat", "Calories You Burn", "Water You Drink"};
+        String[] items = new String[]{"Calories You Eat", "Calories You Burn", "Water You Drink","Nutrorail Today"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, items);
         dropdown.setAdapter(adapter);
 
@@ -133,6 +135,31 @@ public class TabReports extends Fragment {
                         barGraph.animateToGoalValues();
                         barGraph.setValueStringPrecision(0); //1 decimal place. 0 by default for integers.
                     }
+                }
+                else if (position == 3){
+
+
+
+                    ArrayList<Bar> points = new ArrayList<Bar>();
+
+                        Bar bar = new Bar();
+                        bar.setColor(BarColor);
+                        bar.setName("01");
+                        bar.setGoalValue(10);
+                        points.add(bar);
+
+                         bar.setName("02");
+                         bar.setGoalValue(10);
+                         points.add(bar);
+
+                        barGraph.setBars(points);
+
+                        barGraph.setValueStringPrecision(0);
+                        barGraph.setDuration(0);//default if unspecified is 300 ms
+                        barGraph.setInterpolator(new AccelerateDecelerateInterpolator());//Only use over/undershoot  when not inserting/deleting
+                        barGraph.animateToGoalValues();
+                        barGraph.setValueStringPrecision(0); //1 decimal place. 0 by default for integers.
+
                 }
             }
 
