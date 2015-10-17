@@ -110,7 +110,11 @@ public class TabWater extends Fragment {
                     public void onClick(View v) {
                         if(((NewHome)getActivity()).achievements.get(3).isActive() && ((NewHome)getActivity()).achievements.get(3).addValue()){
                             showToast("\"FIRST DRINK WATER\" Achievement Unlocked");
+<<<<<<< HEAD
                             data.addexp(150);
+=======
+                            data.addexp(30);
+>>>>>>> origin/Minami
                         }
                         data.addWaterConsumed(count * Integer.parseInt(cupsize[itemPosition]));
                         if(data.waterNeedPerDay() >= 0) {
@@ -121,7 +125,11 @@ public class TabWater extends Fragment {
                             statusTxt.setText("Status : Full");
                             if(((NewHome)getActivity()).achievements.get(7).isActive() && ((NewHome)getActivity()).achievements.get(7).addValue()){
                                 showToast("\"FIRST WATER IN DAY\" Achievement Unlocked");
+<<<<<<< HEAD
                                 data.addexp(150);
+=======
+                                data.addexp(10);
+>>>>>>> origin/Minami
                             }
                             waterPerDay.setText(data.getWaterConsumed() + "/" + data.getWaterPerDay());
                         }

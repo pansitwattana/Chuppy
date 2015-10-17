@@ -61,7 +61,10 @@ public class TabUser extends Fragment {
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Minami
         lvltext = (TextView) view.findViewById(R.id.lvltext);
         lvltext.setText(""+data.getlvl());
 
