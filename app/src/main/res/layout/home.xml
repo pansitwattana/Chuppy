@@ -17,23 +17,32 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="6"
+                android:layout_weight="8"
                 android:background="#ff262626">
-                <ImageButton
+
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/imageButton3"
-                    android:src="@drawable/ic_person_white_24dp"
-                    android:background="#ff262626"
-                    android:layout_weight="2" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    android:id="@+id/lvltext"
-                    android:textColor="#fffdfdfe"
-                    android:layout_weight="3"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_weight="8">
+
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/imageButton3"
+                        android:src="@drawable/ic_person_white_24dp"
+                        android:background="#ff262626"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:id="@+id/lvltext"
+                        android:textColor="#fffdfdfe"
+                        android:layout_gravity="center" />
+                </LinearLayout>
+
             </LinearLayout>
             <ProgressBar
                 style="@android:style/Widget.ProgressBar.Horizontal"
@@ -48,185 +57,156 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="4.8"
-        android:padding="20dp"
-        android:background="#ffffffff">
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <LinearLayout
-                android:orientation="vertical"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingRight="10dp">
+                android:padding="10dp">
 
-                <LinearLayout
-                    android:orientation="horizontal"
+                <com.echo.holographlibrary.PieGraph
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
+                    android:id="@+id/graph" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="%"
+                    android:id="@+id/percent_1"
+                    android:layout_toEndOf="@+id/graph1_score"
+                    android:layout_alignTop="@+id/graph1_score" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="30"
+                    android:id="@+id/graph1_score"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:textColor="#fffd8409" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignBottom="@+id/graph"
+                    android:layout_centerHorizontal="true">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="C"
+                        android:text="Requirements"
                         android:id="@+id/textView30"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
-                        android:textSize="16dp"
-                        android:textColor="#fd850b"
-                        android:textStyle="bold" />
+                        android:textSize="17dp"
+                        android:textColor="#373737"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="alorie "
+                        android:text="calorie "
                         android:id="@+id/textView28"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
-                        android:textSize="16dp"
-                        android:textColor="#fd850b" />
+                        android:textSize="15dp"
+                        android:textColor="#373737"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="-5dp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="%"
+                    android:id="@+id/percent_2"
+                    android:layout_toEndOf="@+id/graph2_score"
+                    android:layout_alignTop="@+id/graph2_score" />
+
+                <com.echo.holographlibrary.PieGraph
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/graph2"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignBottom="@+id/graph2"
+                    android:layout_centerHorizontal="true" >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="R"
+                        android:text="Burned"
                         android:id="@+id/textView31"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
-                        android:textSize="16dp"
-                        android:textColor="#fd850b"
-                        android:textStyle="bold" />
+                        android:textSize="17dp"
+                        android:textColor="#373737"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="equest"
+                        android:text="calorie "
                         android:id="@+id/textView32"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
-                        android:textSize="16dp"
-                        android:textColor="#fd850b" />
+                        android:textSize="15dp"
+                        android:textColor="#373737"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="-5dp" />
                 </LinearLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <com.echo.holographlibrary.PieGraph
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/graph" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="30%"
-                        android:id="@+id/graph1_score"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="18dp"
-                        android:textStyle="bold"
-                        android:textColor="#fffd8409" />
-                </RelativeLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingLeft="10dp">
-
-                <LinearLayout
-                    android:orientation="horizontal"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="C"
-                        android:id="@+id/textView29"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="16dp"
-                        android:textColor="#fd850b"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="alorie "
-                        android:id="@+id/textView33"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="16dp"
-                        android:textColor="#fd850b" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="R"
-                        android:id="@+id/textView34"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="16dp"
-                        android:textColor="#fd850b"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="equest"
-                        android:id="@+id/textView35"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="16dp"
-                        android:textColor="#fd850b" />
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <com.echo.holographlibrary.PieGraph
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/graph2"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="30%"
-                        android:id="@+id/graph2_score"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="18dp"
-                        android:textStyle="bold"
-                        android:textColor="#ff438424" />
-                </RelativeLayout>
-
-            </LinearLayout>
+                    android:text="30"
+                    android:id="@+id/graph2_score"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:textColor="#ff438424" />
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -236,7 +216,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listView_detail_home"
-        android:layout_weight="6" />
+        android:layout_weight="6"
+        android:layout_marginTop="10dp" />
 
     <LinearLayout
         android:orientation="horizontal"

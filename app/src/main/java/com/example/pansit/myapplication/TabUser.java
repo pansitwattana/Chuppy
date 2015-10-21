@@ -12,6 +12,7 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -59,12 +60,6 @@ public class TabUser extends Fragment {
 
 
 
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/Minami
         lvltext = (TextView) view.findViewById(R.id.lvltext);
         lvltext.setText(""+data.getlvl());
 
@@ -185,12 +180,16 @@ public class TabUser extends Fragment {
         detail_listview.setAdapter(null);
 
         TextView graph1_percen = (TextView)view.findViewById(R.id.graph1_score);
+        TextView graph1_percen_text = (TextView)view.findViewById(R.id.percent_1);
+
         TextView graph2_percen = (TextView)view.findViewById(R.id.graph2_score);
+        TextView graph2_percen_text = (TextView)view.findViewById(R.id.percent_2);
 
         ArrayList<String> detailname = new ArrayList<String>();
         ArrayList<String> valname = new ArrayList<String>();
         ArrayList<String> colorname = new ArrayList<String>();
         ArrayList<String> percentext = new ArrayList<String>();
+        ArrayList<Integer> valpercen = new ArrayList<Integer>();
         customdetail_home_Adapter adapter;
 
 
@@ -232,20 +231,22 @@ public class TabUser extends Fragment {
         }
 
         PieSlice slice = new PieSlice();
-        slice.setColor(Color.parseColor(textcolor1));
-        slice.setValue(calperday - caleat);
-        pg.addSlice(slice);
 
+        slice = new PieSlice();
+        slice.setColor(Color.parseColor(textcolor1));
+        slice.setValue(calperday-caleat);
+        pg.addSlice(slice);
 
         slice = new PieSlice();
         slice.setColor(Color.parseColor(textcolor2));
         slice.setValue(caleat);
         pg.addSlice(slice);
 
-
-
-        pg.setInnerCircleRatio(200);
+        pg.setInnerCircleRatio(220);
         pg.setPadding(5);
+
+
+
 
 
 
@@ -302,40 +303,47 @@ public class TabUser extends Fragment {
         slice2.setColor(Color.parseColor(textcolor3));
         slice2.setValue(caleat - calburn);
         slice2.setTitle("CAL ALL");
-        //  slice2.setGoalValue(data.getCaloriesPerDay() - data.getCaloriesConsumed());
         pg2.addSlice(slice2);
 
 
         slice2 = new PieSlice();
         slice2.setColor(Color.parseColor(textcolor4));
         slice2.setValue(calburn);
-        // slice2.setGoalValue(calburn);
         pg2.addSlice(slice2);
-        // pg2.animateToGoalValues();
 
-        pg2.setInnerCircleRatio(200);
+
+        pg2.setInnerCircleRatio(220);
         pg2.setPadding(5);
 
 
 
         // list view
-        detailname.add("Calorie Request : ");
+        detailname.add("Calorie Require : ");
         valname.add(data.getCaloriesConsumed() + " / " + data.getCaloriesPerDay() + " cal");
         colorname.add(textcolor2);
         percentext.add(percentval01+"%");
+        valpercen.add(percentval01);
 
         detailname.add("Calorie Burn : ");
         valname.add(data.getCaloriesBurned() +" / "+data.getCaloriesConsumed() + " cal");
         colorname.add(textcolor4);
         percentext.add(percentval02+"%");
+        valpercen.add(percentval02);
 
-        graph1_percen.setText(percentval01 + "%");
+        graph1_percen.setText(percentval01 + "");
         graph1_percen.setTextColor(Color.parseColor(textcolor2));
-        graph2_percen.setText(percentval02 + "%");
-        graph2_percen.setTextColor(Color.parseColor(textcolor4));
+        graph1_percen_text.setTextColor(Color.parseColor(textcolor2));
 
-        adapter = new customdetail_home_Adapter(getActivity(), detailname,colorname,valname);
+        graph2_percen.setText(percentval02 + "");
+        graph2_percen.setTextColor(Color.parseColor(textcolor4));
+        graph2_percen_text.setTextColor(Color.parseColor(textcolor4));
+
+
+        adapter = new customdetail_home_Adapter(getActivity(), detailname,colorname,valname,valpercen);
+
+
         detail_listview.setAdapter(adapter);
+
 
 
         return view;
